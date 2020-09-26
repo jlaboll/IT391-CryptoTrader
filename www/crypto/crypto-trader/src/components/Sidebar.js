@@ -1,6 +1,9 @@
 import React from 'react';
+import {BsFillXCircleFill, BsHouseFill, BsInfoCircleFill, BsPerson} from "react-icons/all";
 import styled from "styled-components";
-import { Link, withRouter } from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
+
+
 /* This defines the actual bar going down the screen */
 const StyledSideNav = styled.div`
   position: fixed;     /* Fixed Sidebar (stay in place on scroll and position relative to viewport) */
@@ -8,9 +11,8 @@ const StyledSideNav = styled.div`
   right: 0;
   height: 100%;
   width: 75px;     /* Set the width of the sidebar */
-  z-index: 1;      /* Stay on top of everything */
-  top: 3.4em;      /* Stay at the top */
-  background-color: #222; /* Black */
+  z-index: 1;      /* Stay on top of everything */ 
+  background-color: #284B63; /* Black */
   overflow-x: hidden;     /* Disable horizontal scroll */
   padding-top: 10px;
 `;
@@ -20,27 +22,14 @@ class SideNav extends React.Component {
         super(props);
         this.state = {
             activePath: props.location.pathname,
-            items: [
-                {
-                    path: '/', /* path is used as id to check which NavItem is active basically */
-                    name: 'Home',
-                    css: 'fa fa-fw fa-home',
-                    key: 1 /* Key is required, else console throws error. Does this please you Mr. Browser?! */
-                },
-                {
-                    path: '/about',
-                    name: 'About',
-                    css: 'fa fa-fw fa-clock',
-                    key: 2
-                },
-                {
-                    path: '/NoMatch',
-                    name: 'NoMatch',
-                    css: 'fas fa-hashtag',
-                    key: 3
-                },
-            ]
         }
+    }
+
+    componentDidMount() {
+        const header = document.getElementById('navbar-wrapper').clientHeight;
+        this.setState({
+            top: header
+        });
     }
 
     onItemClick = (path) => {
@@ -48,28 +37,28 @@ class SideNav extends React.Component {
     }
 
     render() {
-        const {items, activePath} = this.state;
+        const {activePath} = this.state;
+        const styles = {
+            containerStyle: {
+                top: this.state.top,
+            }
+        };
+        const {containerStyle} = styles;
         return (
-            <StyledSideNav>
-                {
-                    /* items = just array AND map() loops thru that array AND item is param of that loop */
-                    items.map((item) => {
-                        /* Return however many NavItems in array to be rendered */
-                        return (
-                            <NavItem path={item.path} name={item.name} css={item.css}
-                                     onItemClick={this.onItemClick} /* Simply passed an entire function to onClick prop */
-                                     active={item.path === activePath} key={item.key}/>
-                        )
-                    })
-                }
+            <StyledSideNav style={containerStyle}>
+
+                <IconHome path='/' onItemClick={this.onItemClick} active={'/' === activePath}/>
+                <IconLogin path='/login' onItemClick={this.onItemClick} active={'/login' === activePath}/>
+                <IconAbout path='/about' onItemClick={this.onItemClick} active={'/about' === activePath}/>
+                <IconNoMatch path='/no-match' onItemClick={this.onItemClick} active={'/no-match' === activePath}/>
+
+
             </StyledSideNav>
         );
     }
 
 }
-const RouterSideNav = withRouter(SideNav);
-const NavIcon = styled.div`
-`;
+
 const StyledNavItem = styled.div`
   height: 70px;
   width: 75px; /* width must be same size as NavBar to center */
@@ -85,49 +74,112 @@ const StyledNavItem = styled.div`
   }
 `;
 
-class NavItem extends React.Component {
+
+class IconHome extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            activePath: '/',
-            items: [
-                {
-                    path: '/', /* path is used as id to check which NavItem is active basically */
-                    name: 'Home',
-                    css: 'fa fa-fw fa-home',
-                    key: 1 /* Key is required, else console throws error. Does this please you Mr. Browser?! */
-                },
-                {
-                    path: '/about',
-                    name: 'About',
-                    css: 'fa fa-fw fa-clock',
-                    key: 2
-                },
-                {
-                    path: '/NoMatch',
-                    name: 'NoMatch',
-                    css: 'fas fa-hashtag',
-                    key: 3
-                },
-            ]
+            activePath: this.props.active
         }
     }
+
     handleClick = () => {
-        const { path, onItemClick } = this.props;
+        const {path, onItemClick} = this.props;
         onItemClick(path);
     }
+
     render() {
-        const { active } = this.props;
+        const {active} = this.props;
+
         return (<StyledNavItem active={active}>
-                <Link to={this.props.path} className={this.props.css} onClick={this.handleClick}>
-                    <NavIcon/>
+                <Link to={this.props.path} onClick={this.handleClick}>
+                    <BsHouseFill/>
                 </Link>
             </StyledNavItem>
         );
     }
 }
 
+class IconAbout extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            activePath: this.props.active
+        }
+    }
+
+    handleClick = () => {
+        const {path, onItemClick} = this.props;
+        onItemClick(path);
+    }
+
+    render() {
+        const {active} = this.props;
+
+        return (<StyledNavItem active={active}>
+                <Link to={this.props.path} onClick={this.handleClick}>
+                    <BsInfoCircleFill/>
+                </Link>
+            </StyledNavItem>
+        );
+    }
+}
+
+class IconLogin extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            activePath: this.props.active
+        }
+    }
+
+    handleClick = () => {
+        const {path, onItemClick} = this.props;
+        onItemClick(path);
+    }
+
+    render() {
+        const {active} = this.props;
+
+        return (<StyledNavItem active={active}>
+                <Link to={this.props.path} onClick={this.handleClick}>
+                    <BsPerson/>
+                </Link>
+            </StyledNavItem>
+        );
+    }
+}
+
+class IconNoMatch extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            activePath: this.props.active
+        }
+    }
+
+    handleClick = () => {
+        const {path, onItemClick} = this.props;
+        onItemClick(path);
+    }
+
+    render() {
+        const {active} = this.props;
+
+        return (<StyledNavItem active={active}>
+                <Link to={this.props.path} onClick={this.handleClick}>
+                    <BsFillXCircleFill/>
+                </Link>
+            </StyledNavItem>
+        );
+    }
+}
+
+const RouterSideNav = withRouter(SideNav);
 export default class Sidebar extends React.Component {
     render() {
         return (

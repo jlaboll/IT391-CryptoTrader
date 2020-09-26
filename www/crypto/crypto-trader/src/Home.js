@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+
 const GridWrapper = styled.div`
-  display: grid;
+  display: block;
   grid-gap: 10px;
   margin-top: 1em;
   margin-left: 6em;
