@@ -1,5 +1,5 @@
 import React from 'react';
-import {BsFillXCircleFill, BsHouseFill, BsInfoCircleFill, BsPerson} from "react-icons/all";
+import {BsFillXCircleFill, BsHouseFill, BsInfoCircleFill, BsPerson, BsPersonFill} from "react-icons/all";
 import styled from "styled-components";
 import {Link, withRouter} from "react-router-dom";
 
@@ -12,7 +12,7 @@ const StyledSideNav = styled.div`
   height: 100%;
   width: 75px;     /* Set the width of the sidebar */
   z-index: 1;      /* Stay on top of everything */ 
-  background-color: #284B63; /* Black */
+  background-color: #86BBBD;
   overflow-x: hidden;     /* Disable horizontal scroll */
   padding-top: 10px;
 `;
@@ -66,7 +66,7 @@ const StyledNavItem = styled.div`
   margin-bottom: 0;   /* Puts space between NavItems */
   a {
     font-size: 2.7em;
-    color: ${(props) => props.active ? "white" : "#9FFFCB"};
+    color: ${(props) => props.active ?  "#E7ECEF":"#284B63"};
     :hover {
       opacity: 0.7;
       text-decoration: none; /* Gets rid of underlining of icons */
@@ -146,7 +146,7 @@ class IconLogin extends React.Component {
 
         return (<StyledNavItem active={active}>
                 <Link to={this.props.path} onClick={this.handleClick}>
-                    <BsPerson/>
+                    <BsPersonFill/>
                 </Link>
             </StyledNavItem>
         );
