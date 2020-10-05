@@ -20,7 +20,7 @@ const CustomBar = styled.div`
 `;
 
 
-class CustomHeader extends React.Component {
+class CryptoHeader extends React.Component {
 
     render() {
         return (
@@ -38,10 +38,9 @@ class CustomHeader extends React.Component {
                 </Container>
             </CustomBar>
         )
-
     }
 }
 
 export const NavigationBar = () => (
-    <CustomHeader/>
+    <CryptoHeader/>
 )
