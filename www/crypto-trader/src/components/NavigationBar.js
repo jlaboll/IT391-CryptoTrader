@@ -5,8 +5,8 @@ import Sidebar from "./Sidebar";
 import Container from "react-bootstrap/Container";
 
 const CustomBar = styled.div`
-  .container{
-    border-width: 0;
+  .container-fluid{
+    padding: 0px 0px;
   }
   .navbar{
     background-color: #284B63;

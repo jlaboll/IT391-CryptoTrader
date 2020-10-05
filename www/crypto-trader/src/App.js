@@ -6,14 +6,17 @@ import {Login} from "./Login";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {NavigationBar} from './components/NavigationBar';
 import {Container} from "react-bootstrap";
-
+import styled from "styled-components";
+const Body = styled(Container)`
+padding: 0px 0px;
+`;
 function App() {
     return (
         <>
             <Router>
                 <NavigationBar/>
 
-                <Container id="body-container">
+                <Body id="body-container">
 
                     <Switch>
                         <Route exact path="/" component={Home}/>
@@ -22,7 +25,7 @@ function App() {
                         <Route component={NoMatch}/>
                     </Switch>
 
-                </Container>
+                </Body>
             </Router>
         </>
     );
