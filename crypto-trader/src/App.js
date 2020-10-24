@@ -1,8 +1,8 @@
 import React from 'react';
-import {Home} from './Home';
-import {About} from './About';
+import {Home} from './routes/Home';
+import {About} from './routes/About';
 import {NoMatch} from './NoMatch';
-import {Login} from "./Login";
+import {Login} from "./routes/Login";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {NavigationBar} from './components/NavigationBar';
 import {Container} from "react-bootstrap";
