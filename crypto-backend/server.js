@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
-const app = express();
+const app = require("../app");
 
 var corsOptions = {
     origin: "http://localhost:3001"
@@ -32,3 +32,5 @@ const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
 });
+
+module.exports = app;

@@ -34,5 +34,20 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
+const db = require("./models");
+db.sequelize.sync({ force: true }).then(() => {
+  console.log("Drop and re-sync db.");
+});
+// simple route
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome to backend application." });
+});
+require("./routes/user_routes")(app);
+require("./routes/coin_routes")(app);
+require("./routes/wallet_routes")(app);
+// set port, listen for requests
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}.`);
+});
 module.exports = app;
