@@ -1,6 +1,6 @@
 import React from "react";
 import {Form, FormControl} from "react-bootstrap";
-
+import history from './history';
 
 export const Login = (props) => (
     <div>
@@ -14,8 +14,9 @@ export const Login = (props) => (
         <button>
             Login
         </button>
-        <button>
+        <button onClick={() => history.push('/Sign_up')}>
             Sign Up
         </button>
     </div>
 )
+
