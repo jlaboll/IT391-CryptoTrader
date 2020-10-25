@@ -1,24 +1,8 @@
 import React from 'react';
 import {Navbar} from 'react-bootstrap';
-import styled from 'styled-components';
 import Sidebar from "./Sidebar";
 import Container from "react-bootstrap/Container";
-
-const CustomBar = styled.div`
-  .container-fluid{
-    padding: 0px 0px;
-  }
-  .navbar{
-    background-color: #284B63;
-    justify-content: space-between;
-  }
-  .Title{
-    font-size: 1.8em;
-    color: #CCB114;
-    &:hover { color: #E7ECEF; }
-  }
-`;
-
+import {CustomBar} from "../Styles";
 
 class CryptoHeader extends React.Component {
 

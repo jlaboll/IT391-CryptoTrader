@@ -3,20 +3,8 @@ import {BsHouseFill, BsInfoCircleFill, BsPersonFill} from "react-icons/all";
 import styled from "styled-components";
 import {Link, withRouter} from "react-router-dom";
 import {Container} from "react-bootstrap";
+import {StyledNavItem, StyledSideNav} from "../Styles";
 
-
-/* This defines the actual bar going down the screen */
-const StyledSideNav = styled.div`
-  position: fixed;     /* Fixed Sidebar (stay in place on scroll and position relative to viewport) */
-  bottom: 0;
-  right: 0;
-  height: 100%;
-  width: 75px;     /* Set the width of the sidebar */
-  z-index: 1;      /* Stay on top of everything */ 
-  background-color: #86BBBD;
-  overflow-x: hidden;     /* Disable horizontal scroll */
-  padding-top: 10px;
-`;
 
 class SideNav extends React.Component {
     constructor(props) {
@@ -91,23 +79,7 @@ class SideNav extends React.Component {
 
 }
 
-const StyledNavItem = styled.div`
-  height: 70px;
-  width: 75px; /* width must be same size as NavBar to center */
-  margin-bottom: 0;   /* Puts space between NavItems */
-  a{
-    font-size: 2.7em;
-    color: ${(props) => props.active ? "#E7ECEF" : "#284B63"};
-    :hover {
-      text-decoration: none;
-      opacity: 0.7; /* Gets rid of underlining of icons */
-    }  
-    text{
-      font-size: small;
-    }
-  }
-  
-`;
+
 
 class NavItem extends React.Component {
     handleClick = () => {
