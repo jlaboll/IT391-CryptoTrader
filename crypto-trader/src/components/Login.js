@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import {
+import React, {Component} from 'react';
+import  {
     ScrollView,
     Text,
     TextInput,
     View,
     Button,
-    Alert,
     ActivityIndicator
 } from 'react-native';
+import {findByLogin} from "../services/User_Service"
 
 
 export default class Login extends Component {
@@ -29,13 +29,7 @@ export default class Login extends Component {
         };
 
         var proceed = false;
-        fetch("/api/user/:login", {
-            method: "GET",
-            headers: {
-
-            },
-            body: params
-        })
+        findByLogin(params.uname, params.passwd)
             .then((response) => response.json())
             .then((response) => {
                 if (response.status==200) proceed = true;

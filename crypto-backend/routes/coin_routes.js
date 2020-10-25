@@ -21,5 +21,7 @@ module.exports = app => {
     // Delete all coin
     router.delete("/", coin.deleteAll);
 
+    router.get("/:wallid", coin.findByWalletId);
+
     app.use('/api/coin', router);
 };

@@ -131,3 +131,20 @@ exports.deleteAll = (req, res) => {
             });
         });
 };
+
+exports.findByUserId = (req, res) =>{
+    const user_id = req.params.user_id;
+    Wallet.findAll({
+        where:{
+            user_id: user_id
+        }
+    })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error retrieving Wallet with usrid=" + user_id
+            });
+        });
+}

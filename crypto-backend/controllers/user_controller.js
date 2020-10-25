@@ -51,19 +51,6 @@ exports.findAll = (req, res) => {
         });
 };
 
-exports.attemptLogin = (req, res) =>{
-    const uname = req.params.uname;
-    const passwd = req.params.psswd;
-    User.findOne(
-        {
-            where: {
-                email: uname,
-                psswd: passwd
-            }
-        }
-    )
-}
-
 // Find a single User with an id
 exports.findOne = (req, res) => {
     const id = req.params.id;
@@ -144,4 +131,26 @@ exports.deleteAll = (req, res) => {
                     err.message || "Some error occurred while removing all Users."
             });
         });
+};
+
+exports.findByLogin = (req, res)=>{
+    const uname = req.params.uname;
+    const pass = req.body;
+
+    User.findOne({
+        where:{
+            email: uname,
+            psswd: pass
+        }
+    })
+            .then(data => {
+                res.send(data);
+            })
+            .catch(err => {
+                res.status(500).send({
+                    message: "Error retrieving User with id=" + id
+                });
+            });
+
+
 };

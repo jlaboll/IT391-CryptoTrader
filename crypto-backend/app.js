@@ -3,7 +3,6 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var indexRouter = require('./routes/index');
 
 var app = express();
 
@@ -17,7 +16,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -46,8 +44,7 @@ require("./routes/user_routes")(app);
 require("./routes/coin_routes")(app);
 require("./routes/wallet_routes")(app);
 // set port, listen for requests
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
+app.listen(app.port, () => {
+  console.log(`Server is running on port ${app.port}.`);
 });
 module.exports = app;

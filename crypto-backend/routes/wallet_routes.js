@@ -21,5 +21,7 @@ module.exports = app => {
     // Delete all wallet
     router.delete("/", wallet.deleteAll);
 
+    router.get("/:user_id", wallet.findByUserId);
+
     app.use('/api/wallet', router);
 };

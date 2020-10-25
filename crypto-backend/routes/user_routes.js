@@ -9,7 +9,6 @@ module.exports = app => {
     // Retrieve all user
     router.get("/", user.findAll);
 
-    router.get("/:login", user.attemptLogin)
     // Retrieve a single user with id
     router.get("/:id", user.findOne);
 
@@ -21,6 +20,8 @@ module.exports = app => {
 
     // Delete all user
     router.delete("/", user.deleteAll);
+
+    router.get("/:uname", user.findByLogin);
 
     app.use('/api/user', router);
 };

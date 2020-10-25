@@ -132,3 +132,19 @@ exports.deleteAll = (req, res) => {
             });
         });
 };
+exports.findByWalletId = (req, res) =>{
+    const wallid = req.params.wallid;
+    Coin.findAll({
+        where:{
+            wallid: wallid
+        }
+    })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error retrieving Coins with wallid=" + wallid
+            });
+        });
+}
