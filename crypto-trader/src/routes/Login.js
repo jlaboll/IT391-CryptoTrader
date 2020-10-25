@@ -1,6 +1,6 @@
 import React from "react";
 import {Form, FormControl} from "react-bootstrap";
-import history from './history';
+import history from '../history';
 
 export const Login = (props) => (
     <div>

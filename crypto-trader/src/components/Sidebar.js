@@ -1,10 +1,8 @@
 import React from 'react';
-import {BsHouseFill, BsInfoCircleFill, BsPersonFill} from "react-icons/all";
-import styled from "styled-components";
+import {BsHouseFill, BsInfoCircleFill, BsPersonFill,BsPencilSquare} from "react-icons/all";
 import {Link, withRouter} from "react-router-dom";
 import {Container} from "react-bootstrap";
 import {StyledNavItem, StyledSideNav} from "../Styles";
-import {BsPencilSquare} from "react-icons";
 
 
 class SideNav extends React.Component {

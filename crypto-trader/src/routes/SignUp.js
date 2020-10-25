@@ -2,7 +2,7 @@ import React from "react";
 import {Form, FormControl} from "react-bootstrap";
 
 
-export const Sign_up = (props) => (
+export const SignUp = (props) => (
     <div>
         <Form>
             <FormControl type="text" placeholder="First Name" className=""/>
