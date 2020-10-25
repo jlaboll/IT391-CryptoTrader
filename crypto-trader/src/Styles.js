@@ -32,9 +32,11 @@ export const StyledNavItem = styled.div`
     color: ${(props) => props.active ? "#E7ECEF" : "#284B63"};
     :hover {
       text-decoration: none;
+      color: cornflowerblue;
       opacity: 0.7; /* Gets rid of underlining of icons */
     }  
     text{
+      text-anchor: middle;
       font-size: small;
     }
   }

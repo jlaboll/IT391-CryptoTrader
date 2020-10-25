@@ -4,6 +4,7 @@ import styled from "styled-components";
 import {Link, withRouter} from "react-router-dom";
 import {Container} from "react-bootstrap";
 import {StyledNavItem, StyledSideNav} from "../Styles";
+import {BsPencilSquare} from "react-icons";
 
 
 class SideNav extends React.Component {
@@ -29,6 +30,12 @@ class SideNav extends React.Component {
                     name: 'Login',
                     as: <BsPersonFill/>,
                     key: 3
+                },
+                {
+                    path: '/signup',
+                    name: 'Sign Up',
+                    as: <BsPencilSquare/>,
+                    key: 4
                 },
                 // { //Not being used, as this is an error page.
                 //     path: '/NoMatch',

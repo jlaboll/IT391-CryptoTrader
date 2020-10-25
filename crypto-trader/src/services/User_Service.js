@@ -24,16 +24,7 @@ const removeAll = () => {
     return http.delete(`/user`);
 };
 
-const findByLogin = (uname, pass) => {
+export const findByLogin = (uname, pass) => {
     return http.get(`/user/${uname}`, pass);
 };
 
-export default {
-    getAll,
-    get,
-    create,
-    update,
-    remove,
-    removeAll,
-    findByLogin
-};
