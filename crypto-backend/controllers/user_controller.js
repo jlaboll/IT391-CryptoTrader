@@ -51,6 +51,19 @@ exports.findAll = (req, res) => {
         });
 };
 
+exports.attemptLogin = (req, res) =>{
+    const uname = req.params.uname;
+    const passwd = req.params.psswd;
+    User.findOne(
+        {
+            where: {
+                email: uname,
+                psswd: passwd
+            }
+        }
+    )
+}
+
 // Find a single User with an id
 exports.findOne = (req, res) => {
     const id = req.params.id;
