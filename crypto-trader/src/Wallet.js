@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NumberFormat from "react-number-format";
 
-//TODO: Fix handleSell to not let negatives
+
 
 export default class Wallet extends Component {
     state = {
@@ -35,9 +35,9 @@ export default class Wallet extends Component {
         // console.log('props', this.props);
         return(
             <div className="container">
-                <div className="row border-bottom mb-2">
+                <div className="row border-bottom mb-2 pt-2 ">
                     <div className="col-sm"><span>{this.props.coin} </span></div>
-                    <div className="col-sm"><span>{this.displayCount()} / {this.displayAmount()}</span></div>
+                    <div className="col-sm d-flex justify-content-center"><span>{this.displayCount()} / {this.displayAmount()}</span></div>
                     <div className="col-sm mb-2">
                         <button className="btn btn-outline-dark float-right" onClick={this.handleBuy}>Buy</button>
                         <button className="btn btn-outline-dark float-right" onClick={this.handleSell}>Sell</button>
