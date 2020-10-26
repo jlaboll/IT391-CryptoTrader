@@ -10,14 +10,33 @@ flex: 100%;
 `;
 
 export const CustomBar = styled.div`
-  .container-fluid{
-    padding: 0 0;
+   width: 100%;
+   display: flex;
+    flex: 1;
+.navbar {
+  display: flex;
+  flex: 1 0 auto;
+  flex-flow: row nowrap;
+  /* This aligns items to the end line on main-axis */
+  justify-content: flex-end;
+  background-color: #284B63;
+}
+
+/* Medium screens */
+@media all and (max-width: 768px) {
+  .navbar {
+    /* When on medium sized screens, we center it by evenly distributing empty space around items */
+    justify-content: space-around;
   }
-  .navbar{
-    background-color: #284B63;
-    display: flex;
-    justify-content: space-between;
+}
+
+/* Small screens */
+@media all and (max-width: 540px) {
+  .navbar {
+    /* On small screens, we are no longer using row direction but column */
+    flex-flow: row wrap;
   }
+}
   .Title{
     font-size: 180%;
     color: #CCB114;
@@ -110,9 +129,11 @@ export const SignUpDiv = styled.div`
 
 export const ImgCarousel = styled.div`
   display: flex;
+  flex: 1;
   justify-content: center;
   .carousel{
-  width: 40%;
+  width: 100%;
+  flex: 1;
   align-self: center;
   .item{
   border-radius: 3%;
@@ -152,8 +173,27 @@ export const CoinDiv = styled.div`
   
 `;
 
-export const ProfileDiv = styled.div`
+export const TextBubble = styled.text`
+    
+    width: fit-content;
+    height: fit-content;
+    text-align: center;
+    font-size: 200%; 
+    color: #284B63;
+    border-radius: 20px;
+    padding-right: 30px;
+    padding-left: 30px;
+    background-color: #E7ECEF;
+    align-self: center;
+`;
+
+export const LoginContainer = styled(Container)`
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background-color: #86BBBD;
+  height: 100%;
+  width: 100%;
   display: flex;
-  width: 1*inherit;
-  height: inherit;
+  flex-flow: column wrap;
+  align-items: center;
 `;

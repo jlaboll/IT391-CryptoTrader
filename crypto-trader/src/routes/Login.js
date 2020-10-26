@@ -1,22 +1,15 @@
 import React from "react";
-import {Form, FormControl} from "react-bootstrap";
-import history from '../history';
+import {LoginContainer} from "../Styles";
+import LoginForm from "../components/LoginForm";
 
-export const Login = (props) => (
-    <div>
-        <Form>
-            <FormControl type="text" placeholder="Username" className=""/>
-        </Form>
-        <Form>
-            <FormControl type="text" placeholder="Password" className=""/>
-        </Form>
 
-        <button>
-            Login
-        </button>
-        <button onClick={() => history.push('/Sign_up.js')}>
-            Sign Up
-        </button>
-    </div>
-)
+export class Login extends React.Component{
+    render() {
+        return (
+            <LoginContainer>
+                <LoginForm/>
+            </LoginContainer>
+        );
+    }
+}
 

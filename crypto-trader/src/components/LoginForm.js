@@ -4,14 +4,16 @@ import  {
     Text,
     TextInput,
     View,
-    Button,
     ActivityIndicator
 } from 'react-native';
+import Button from '@bit/nexxtway.react-rainbow.button'
 import {findByLoginUser} from "../services/User_Service"
-import {ProfileDiv} from "../Styles";
+import {TextBubble} from "../Styles";
 
 
-export default class Login extends Component {
+const css = { margin: 5, background:'#CCB114', color: '#284B63'}
+
+export default class LoginForm extends Component {
 
     state = {
         username: '',
@@ -58,20 +60,22 @@ export default class Login extends Component {
 
     render() {
         return (
-            <ProfileDiv>
-            <ScrollView style={{padding: 20}}>
-                <Text
-                    style={{fontSize: 27, color: '#CCB114'}}>
+            <ScrollView>
+                <TextBubble>
                     Login
-                </Text>
+                </TextBubble>
+                <View style={{margin:5}} />
                 <TextInput
+                    style={{padding:'4px'}}
                     ref={component => this._username = component}
                     placeholder='Username'
                     onChangeText={(username) => this.setState({username})}
                     autoFocus={true}
                     onFocus={this.clearUsername}
                 />
+                <View style={{margin:5}} />
                 <TextInput
+                    style={{padding:'4px'}}
                     ref={component => this._password = component}
                     placeholder='Password'
                     onChangeText={(password) => this.setState({password})}
@@ -81,20 +85,26 @@ export default class Login extends Component {
                 />
                 {!!this.state.message && (
                     <Text
-                        style={{fontSize: 14, color: 'red', padding: 5}}>
+                        style={{fontSize: 15, color: 'red', padding: 5}}>
                         {this.state.message}
                     </Text>
                 )}
                 {this.state.isLoggingIn && <ActivityIndicator />}
                 <View style={{margin:5}} />
                 <Button
-                    style={{height: '1*inherit', width: 'inherit'}}
-                    disabled={this.state.isLoggingIn||!this.state.username||!this.state.password}
-                    onPress={this._userLogin}
-                    title="Submit"
-                />
+                    style={css}
+                    shaded
+                    // disabled={this.state.isLoggingIn||!this.state.username||!this.state.password}
+                    label="Submit"
+                    onClick={this._userLogin}
+                    variant="brand" />
+                <Button
+                    style={css}
+                    shaded
+                    label="Sign Up"
+                    onClick={event => window.location.href='/signup'}
+                    variant="brand" />
             </ScrollView>
-            </ProfileDiv>
         )
     }
 }
