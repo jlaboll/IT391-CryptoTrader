@@ -7,6 +7,7 @@ import{SignUp} from "./routes/SignUp";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import {NavigationBar} from './components/NavigationBar';
 import {Body, StyledSwitch} from "./Styles";
+import {LiveTrading} from "./routes/LiveTrading";
 
 function App(){
 
@@ -20,6 +21,7 @@ function App(){
                         <StyledSwitch>
                             <Route exact path="/" component={Home}/>
                             <Route path="/about" component={About}/>
+                            <Route path="/live-trading" component={LiveTrading}/>
                             <Route path="/login" component={Login}/>
                             <Route path="/signup" component={SignUp}/>
                             <Route component={NoMatch}/>
