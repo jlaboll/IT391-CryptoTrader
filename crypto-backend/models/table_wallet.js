@@ -3,7 +3,7 @@
 module.exports = (sequelize, Sequelize) => {
     const attributes = {
         wallid: {
-            type: DataTypes.STRING(8),
+            type: Sequelize.STRING(8),
             allowNull: false,
             defaultValue: null,
             primaryKey: true,
@@ -13,13 +13,13 @@ module.exports = (sequelize, Sequelize) => {
             unique: "wallid"
         },
         wall_name:{
-            type: DataTypes.STRING(128),
+            type: Sequelize.STRING(128),
             allowNull: false,
             defaultValue: "Wallet",
             comment: null
         },
         usd: {
-            type: DataTypes.DECIMAL,
+            type: Sequelize.DECIMAL,
             allowNull: true,
             defaultValue: null,
             primaryKey: false,
@@ -28,7 +28,7 @@ module.exports = (sequelize, Sequelize) => {
             field: "usd"
         },
         user_id: {
-            type: DataTypes.STRING(8),
+            type: Sequelize.STRING(8),
             allowNull: true,
             defaultValue: null,
             primaryKey: false,

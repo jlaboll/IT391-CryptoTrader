@@ -2,7 +2,7 @@
 module.exports = (sequelize, Sequelize) => {
     const attributes = {
         coinid: {
-            type: DataTypes.STRING(8),
+            type: Sequelize.STRING(8),
             allowNull: false,
             defaultValue: null,
             primaryKey: true,
@@ -12,7 +12,7 @@ module.exports = (sequelize, Sequelize) => {
             unique: "coinid"
         },
         amt: {
-            type: DataTypes.DECIMAL,
+            type: Sequelize.DECIMAL,
             allowNull: true,
             defaultValue: null,
             primaryKey: false,
@@ -21,7 +21,7 @@ module.exports = (sequelize, Sequelize) => {
             field: "amt"
         },
         buy_price: {
-            type: DataTypes.DECIMAL,
+            type: Sequelize.DECIMAL,
             allowNull: true,
             defaultValue: null,
             primaryKey: false,
@@ -30,7 +30,7 @@ module.exports = (sequelize, Sequelize) => {
             field: "buy_price"
         },
         api_id: {
-            type: DataTypes.STRING(3),
+            type: Sequelize.STRING(3),
             allowNull: true,
             defaultValue: null,
             primaryKey: false,
@@ -39,7 +39,7 @@ module.exports = (sequelize, Sequelize) => {
             field: "api_id"
         },
         wallid: {
-            type: DataTypes.STRING(8),
+            type: Sequelize.STRING(8),
             allowNull: true,
             defaultValue: null,
             primaryKey: false,

@@ -2,7 +2,7 @@
 module.exports = (sequelize, Sequelize) => {
     const attributes = {
         user_id: {
-            type: DataTypes.STRING(8),
+            type: Sequelize.STRING(8),
             allowNull: false,
             defaultValue: null,
             primaryKey: true,
@@ -12,7 +12,7 @@ module.exports = (sequelize, Sequelize) => {
             unique: "user_id"
         },
         fname: {
-            type: DataTypes.STRING(128),
+            type: Sequelize.STRING(128),
             allowNull: true,
             defaultValue: null,
             primaryKey: false,
@@ -21,7 +21,7 @@ module.exports = (sequelize, Sequelize) => {
             field: "fname"
         },
         lname: {
-            type: DataTypes.STRING(128),
+            type: Sequelize.STRING(128),
             allowNull: true,
             defaultValue: null,
             primaryKey: false,
@@ -30,7 +30,7 @@ module.exports = (sequelize, Sequelize) => {
             field: "lname"
         },
         email: {
-            type: DataTypes.STRING(128),
+            type: Sequelize.STRING(128),
             allowNull: true,
             defaultValue: null,
             primaryKey: false,
@@ -39,7 +39,7 @@ module.exports = (sequelize, Sequelize) => {
             field: "email"
         },
         psswd: {
-            type: DataTypes.STRING(128),
+            type: Sequelize.STRING(128),
             allowNull: true,
             defaultValue: null,
             primaryKey: false,
