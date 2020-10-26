@@ -31,7 +31,7 @@
   },
   "proxy": "http://localhost:3001",
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "crypto-trader"
   },
   "browserslist": {
     "production": [

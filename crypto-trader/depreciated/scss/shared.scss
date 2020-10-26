@@ -10,4 +10,4 @@ $theme-colors: (
 @function theme-color($key: "primary") {
   @return map-get($theme-colors, $key);
 }
-@import "~bootstrap/scss/bootstrap";
+@import "../../node_modules/bootstrap/scss/bootstrap";
