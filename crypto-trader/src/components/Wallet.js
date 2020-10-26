@@ -23,7 +23,7 @@ export default class Wallet extends Component {
     handleSell = () => {
         let sellAmount = this.promptAmt();
         let value = parseFloat(this.state.count);
-        if(value == 0 && sellAmount!= 0){alert("No coins to sell");} else {
+        if(value === 0 && sellAmount!== 0){alert("No coins to sell");} else {
             let newValue = value - parseFloat(sellAmount);
             if(newValue < 0){alert("You don't have that much");}
             else{this.setState({count: newValue});}
