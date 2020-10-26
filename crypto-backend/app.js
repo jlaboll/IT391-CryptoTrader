@@ -36,16 +36,8 @@ const db = require("./models");
 // db.sequelize.sync({ force: true }).then(() => {
 //   console.log("Drop and re-sync db.");
 // });
-// simple route
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to backend application." });
-});
 require("./routes/user_routes")(app);
 require("./routes/coin_routes")(app);
 require("./routes/wallet_routes")(app);
-// set port, listen for requests
-const port = app.get('port');
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}.`);
-});
+
 module.exports = app;
