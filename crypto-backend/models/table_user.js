@@ -1,6 +1,4 @@
-const {
-    DataTypes
-} = require('sequelize');
+import {DataTypes} from "sequelize";
 
 module.exports = sequelize => {
     const attributes = {
@@ -56,6 +54,5 @@ module.exports = sequelize => {
         comment: "",
         indexes: []
     };
-    const UserModel = sequelize.define("user_model", attributes, options);
-    return UserModel;
+    return sequelize.define("user_model", attributes, options);
 };

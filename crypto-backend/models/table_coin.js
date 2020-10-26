@@ -1,6 +1,4 @@
-const {
-    DataTypes
-} = require('sequelize');
+import {DataTypes} from "sequelize";
 
 module.exports = sequelize => {
     const attributes = {
@@ -65,6 +63,5 @@ module.exports = sequelize => {
             fields: ["wallid"]
         }]
     };
-    const CoinModel = sequelize.define("coin_model", attributes, options);
-    return CoinModel;
+    return sequelize.define("coin_model", attributes, options);
 };
