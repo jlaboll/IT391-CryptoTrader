@@ -19,11 +19,11 @@ try {
     console.error('Unable to connect to the database:', error);
 }
 const db = {};
-
+db.Sequelize = Sequelize;
 db.sequelize = sqlize;
 
-db.user = require("./table_user.js")(sqlize);
-db.coin = require("./table_coin.js")(sqlize);
-db.wallet = require("./table_wallet.js")(sqlize);
+db.user = require("./table_user.js")(sqlize, Sequelize);
+db.coin = require("./table_coin.js")(sqlize, Sequelize);
+db.wallet = require("./table_wallet.js")(sqlize, Sequelize);
 
 module.exports = db;

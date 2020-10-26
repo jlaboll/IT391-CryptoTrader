@@ -1,6 +1,6 @@
-import {DataTypes} from "sequelize";
 
-module.exports = sequelize => {
+
+module.exports = (sequelize, Sequelize) => {
     const attributes = {
         wallid: {
             type: DataTypes.STRING(8),

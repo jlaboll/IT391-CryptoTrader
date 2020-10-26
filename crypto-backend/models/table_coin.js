@@ -1,6 +1,5 @@
-import {DataTypes} from "sequelize";
 
-module.exports = sequelize => {
+module.exports = (sequelize, Sequelize) => {
     const attributes = {
         coinid: {
             type: DataTypes.STRING(8),
