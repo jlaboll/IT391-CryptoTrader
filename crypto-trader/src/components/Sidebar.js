@@ -1,5 +1,5 @@
 import React from 'react';
-import {BsHouseFill, BsInfoCircleFill, BsPersonFill} from "react-icons/all";
+import {BsHouseFill, BsInfoCircleFill, BsPersonFill, BsGraphUp} from "react-icons/all";
 import styled from "styled-components";
 import {Link, withRouter} from "react-router-dom";
 import {Container} from "react-bootstrap";
@@ -29,6 +29,12 @@ class SideNav extends React.Component {
                     name: 'Login',
                     as: <BsPersonFill/>,
                     key: 3
+                },
+                {
+                    path: '/coinTest',
+                    name: 'Coins',
+                    as: <BsGraphUp/>,
+                    key: 5
                 },
                 // { //Not being used, as this is an error page.
                 //     path: '/NoMatch',

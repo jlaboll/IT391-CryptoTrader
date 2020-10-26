@@ -3,14 +3,14 @@ import {Container} from "react-bootstrap";
 
 var Client = require('coinbase').Client;
 var client = new Client({
-    'apiKey': 'API KEY',
-    'apiSecret': 'API SECRET'
+    'apiKey': '28tBnplnzLW1phPt',
+    'apiSecret': 'Ds1gqP3RqAqWxeZ8HgQ4G4kuhNKiHvBW'
 });
 client.getCurrencies(function (err, currencies) {
     CoinWindow(currencies);
 });
 
-class CoinWindow extends React.Component {
+export class CoinWindow extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -43,8 +43,8 @@ class CoinItem extends React.Component{
     constructor(props) {
         super(props);
         var Client = require('coinbase').Client;
-        var client = new Client({'apiKey': 'API KEY',
-            'apiSecret': 'API SECRET'});
+        var client = new Client({'apiKey': '28tBnplnzLW1phPt',
+            'apiSecret': 'Ds1gqP3RqAqWxeZ8HgQ4G4kuhNKiHvBW'});
 
         client.getExchangeRates({'currency': 'BTC'}, function(err, rates) {
             console.log(rates);

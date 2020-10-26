@@ -1,13 +1,16 @@
 import React from 'react';
-import {Home} from './routes/Home';
-import {About} from './routes/About';
-import {NoMatch} from './routes/NoMatch';
-import {Login} from "./routes/Login";
+import {Home} from './Home';
+import {About} from './About';
+import {NoMatch} from './NoMatch';
+import {Login} from "./Login";
+import {CoinTest} from "./CoinTest";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {NavigationBar} from './components/NavigationBar';
-import {Body, StyledSwitch} from "./Styles";
-
-
+import {Container} from "react-bootstrap";
+import styled from "styled-components";
+const Body = styled(Container)`
+padding: 0px 0px;
+`;
 function App() {
     return (
         <>
@@ -16,12 +19,13 @@ function App() {
 
                 <Body id="body-container">
 
-                    <StyledSwitch>
+                    <Switch>
                         <Route exact path="/" component={Home}/>
                         <Route path="/about" component={About}/>
                         <Route path="/login" component={Login}/>
+                        <Route path="/coinTest" component={CoinTest}/>
                         <Route component={NoMatch}/>
-                    </StyledSwitch>
+                    </Switch>
 
                 </Body>
             </Router>
