@@ -7,21 +7,17 @@ import Login from "./Login";
 
 
 class CryptoHeader extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
 
         return (
             <CustomBar id='navbar-wrapper'>
                 <Container fluid={true}>
-                    <Navbar expand="lg">
+                    <Navbar expand='md'>
                         <Navbar.Brand href={'/'}>
                             <text className='Title'>Practice-Crypto</text>
                         </Navbar.Brand>
                         <Login/>
-                        <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+                        <Navbar.Toggle id='navbar-collapse' aria-controls="basic-navbar-nav"/>
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Sidebar/>
                         </Navbar.Collapse>

@@ -7,7 +7,8 @@ import  {
     Button,
     ActivityIndicator
 } from 'react-native';
-import {findByLogin} from "../services/User_Service"
+import {findByLoginUser} from "../services/User_Service"
+import {ProfileDiv} from "../Styles";
 
 
 export default class Login extends Component {
@@ -29,10 +30,10 @@ export default class Login extends Component {
         };
 
         var proceed = false;
-        findByLogin(params.uname, params.passwd)
+        findByLoginUser(params)
             .then((response) => response.json())
             .then((response) => {
-                if (response.status==200) proceed = true;
+                if (response.status===200) proceed = true;
                 else this.setState({ message: response.message });
             })
             .then(() => {
@@ -57,9 +58,10 @@ export default class Login extends Component {
 
     render() {
         return (
+            <ProfileDiv>
             <ScrollView style={{padding: 20}}>
                 <Text
-                    style={{fontSize: 27}}>
+                    style={{fontSize: 27, color: '#CCB114'}}>
                     Login
                 </Text>
                 <TextInput
@@ -84,13 +86,15 @@ export default class Login extends Component {
                     </Text>
                 )}
                 {this.state.isLoggingIn && <ActivityIndicator />}
-                <View style={{margin:7}} />
+                <View style={{margin:5}} />
                 <Button
+                    style={{height: '1*inherit', width: 'inherit'}}
                     disabled={this.state.isLoggingIn||!this.state.username||!this.state.password}
                     onPress={this._userLogin}
                     title="Submit"
                 />
             </ScrollView>
+            </ProfileDiv>
         )
     }
 }

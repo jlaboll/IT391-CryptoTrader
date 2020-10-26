@@ -1,30 +1,39 @@
 import http from "../http-common";
 
-const getAll = () => {
+const getAllUser = () => {
     return http.get("/user");
 };
 
-const get = id => {
+const getUser = id => {
     return http.get(`/user/${id}`);
 };
 
-const create = data => {
+const createUser = data => {
     return http.post("/user", data);
 };
 
-const update = (id, data) => {
+const updateUser = (id, data) => {
     return http.put(`/user/${id}`, data);
 };
 
-const remove = id => {
+const removeUser = id => {
     return http.delete(`/user/${id}`);
 };
 
-const removeAll = () => {
+const removeAllUser = () => {
     return http.delete(`/user`);
 };
 
-export const findByLogin = (uname, pass) => {
-    return http.get(`/user/${uname}`, pass);
+const findByLoginUser = login => {
+    return http.get(`/user/${login}`);
 };
 
+export {
+    getAllUser,
+    getUser,
+    createUser,
+    updateUser,
+    removeUser,
+    removeAllUser,
+    findByLoginUser
+};

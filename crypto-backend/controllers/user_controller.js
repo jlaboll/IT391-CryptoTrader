@@ -135,7 +135,7 @@ exports.deleteAll = (req, res) => {
 
 exports.findByLogin = (req, res)=>{
     const uname = req.params.uname;
-    const pass = req.body;
+    const pass = req.params.passwd;
 
     User.findOne({
         where:{

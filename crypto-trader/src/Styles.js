@@ -11,24 +11,25 @@ flex: 100%;
 
 export const CustomBar = styled.div`
   .container-fluid{
-    padding: 0px 0px;
+    padding: 0 0;
   }
   .navbar{
     background-color: #284B63;
+    display: flex;
     justify-content: space-between;
   }
   .Title{
-    font-size: 1.8em;
+    font-size: 180%;
     color: #CCB114;
     &:hover { color: #E7ECEF; }
   }
 `;
 export const StyledNavItem = styled.div`
-  height: 70px;
-  width: 75px; /* width must be same size as NavBar to center */
-  margin-bottom: 0;   /* Puts space between NavItems */
+  height: 1*inherit;
+  width: inherit; /* width must be same size as NavBar to center */
+  margin-bottom: 10%;   /* Puts space between NavItems */
   a{
-    font-size: 2.7em;
+    font-size: 250%;
     color: ${(props) => props.active ? "#E7ECEF" : "#284B63"};
     :hover {
       text-decoration: none;
@@ -37,7 +38,7 @@ export const StyledNavItem = styled.div`
     }  
     text{
       text-anchor: middle;
-      font-size: small;
+      font-size: 30%;
     }
   }
   
@@ -48,16 +49,18 @@ export const StyledSideNav = styled.div`
   bottom: 0;
   right: 0;
   height: 100%;
-  width: 75px;     /* Set the width of the sidebar */
+  width: 1%*inherit;     /* Set the width of the sidebar */
   z-index: 1;      /* Stay on top of everything */ 
   background-color: #86BBBD;
   overflow-x: hidden;     /* Disable horizontal scroll */
-  padding-top: 10px;
+  padding-top: 1%;
+  display: flex;
+  flex-flow: column nowrap;
 `;
 
 export const HomeContainer = styled(Container)`
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 4%;
+  border-bottom-right-radius: 4%;
   background-color: #86BBBD;
   height: 100%;
   width: 100%;
@@ -112,7 +115,7 @@ export const ImgCarousel = styled.div`
   width: 40%;
   align-self: center;
   .item{
-  border-radius: 10px;
+  border-radius: 3%;
   
   .img{
     border-radius: inherit;
@@ -147,4 +150,10 @@ export const NoMatchDiv = styled.div`
 
 export const CoinDiv = styled.div`
   
+`;
+
+export const ProfileDiv = styled.div`
+  display: flex;
+  width: 1*inherit;
+  height: inherit;
 `;

@@ -1,39 +1,39 @@
 import http from "../http-common";
 
-const getAll = () => {
+const getAllWallet = () => {
     return http.get("/wallet");
 };
 
-const get = id => {
+const getWallet = id => {
     return http.get(`/wallet/${id}`);
 };
 
-const create = data => {
+const createWallet = data => {
     return http.post("/wallet", data);
 };
 
-const update = (id, data) => {
+const updateWallet = (id, data) => {
     return http.put(`/wallet/${id}`, data);
 };
 
-const remove = id => {
+const removeWallet = id => {
     return http.delete(`/wallet/${id}`);
 };
 
-const removeAll = () => {
+const removeAllWallet = () => {
     return http.delete(`/wallet`);
 };
 
-const findByUserId = user_id => {
+const findByUserIdWallet = user_id => {
     return http.get(`/wallet?user_id=${user_id}`);
 };
 
-export default {
-    getAll,
-    get,
-    create,
-    update,
-    remove,
-    removeAll,
-    findByUserId
+export {
+    getAllWallet,
+    getWallet,
+    createWallet,
+    updateWallet,
+    removeWallet,
+    removeAllWallet,
+    findByUserIdWallet
 };
