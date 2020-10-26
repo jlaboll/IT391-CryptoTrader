@@ -44,7 +44,7 @@ require("./routes/user_routes")(app);
 require("./routes/coin_routes")(app);
 require("./routes/wallet_routes")(app);
 // set port, listen for requests
-const port = app.port;
+const port = app.get('port');
 app.listen(port, () => {
   console.log(`Server is running on port ${port}.`);
 });
