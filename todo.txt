@@ -1,0 +1,52 @@
+To Do - Crypto:
+Header: 
+        Resolve movement of title and navbutton on sidebar open for small window sizes. 
+
+Home:
+      Dynamic layout, keep current for large displays, and linear for smaller ones. 
+
+      Widen container for pages on small resolutions
+
+About:
+      Write about section, add images, describe project and how it was done, give props to ourselves. 
+
+       Add background
+
+Trading:
+       Live feedback on coin prices
+   
+       Full coin names
+
+       Click for detail popup
+
+       Live change wallets. 
+
+My Account: 
+        Write page. Manage wallets, and what wallets hold here. Manage dollar amount in each wallet. Sell coin in wallet. See wallet trends (increase or decrease)
+
+Login: 
+        Format 404 error on no user.
+       
+        Make icon change to logout when logged in. 
+
+         Add account header
+
+Signup:
+           Allow signup
+
+          Background and formatting
+
+Strech goals: Make things more pretty.
+
+------------------------------------------------------------------------------------------------------------------------
+
+Completed:
+
+Sidebar:
+    Move close to bottom of container
+
+Home:
+    sign up correctly redirects
+
+Login:
+    Allow login.

@@ -1,6 +1,6 @@
 module.exports = {
     HOST: "localhost",
-    USER: "team-6-391",
+    USER: "jlaboll",
     PASSWORD: "cryptocurrency",
     DB: "crypto",
     dialect: "mysql",

@@ -66,7 +66,7 @@ export default class LoginForm extends Component {
                 </TextBubble>
                 <View style={{margin:5}} />
                 <TextInput
-                    style={{padding:'4px'}}
+                    style={{padding:'4px', background: '#94d6d6'}}
                     ref={component => this._username = component}
                     placeholder='Username'
                     onChangeText={(username) => this.setState({username})}
@@ -75,7 +75,7 @@ export default class LoginForm extends Component {
                 />
                 <View style={{margin:5}} />
                 <TextInput
-                    style={{padding:'4px'}}
+                    style={{padding:'4px', background: '#94d6d6'}}
                     ref={component => this._password = component}
                     placeholder='Password'
                     onChangeText={(password) => this.setState({password})}
@@ -94,7 +94,6 @@ export default class LoginForm extends Component {
                 <Button
                     style={css}
                     shaded
-                    // disabled={this.state.isLoggingIn||!this.state.username||!this.state.password}
                     label="Submit"
                     onClick={this._userLogin}
                     variant="brand" />
