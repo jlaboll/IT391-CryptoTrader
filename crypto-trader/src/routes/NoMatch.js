@@ -1,5 +1,5 @@
 import React from 'react';
-import {NoMatchDiv} from "../Styles";
+import {NoMatchDiv} from "../resources/Styles";
 
 
 export const NoMatch = () => (

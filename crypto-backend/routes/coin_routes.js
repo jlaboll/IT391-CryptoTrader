@@ -1,8 +1,6 @@
 module.exports = app => {
     const coin = require("../controllers/coin_controller.js");
-
     var router = require("express").Router();
-
     // Create a new coin
     router.post("/", coin.create);
 
@@ -22,6 +20,5 @@ module.exports = app => {
     router.delete("/", coin.deleteAll);
 
     router.get("/:wallid", coin.findByWalletId);
-
     app.use('/api/coin', router);
 };

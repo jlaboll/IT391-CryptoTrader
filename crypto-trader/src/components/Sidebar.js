@@ -1,11 +1,11 @@
 import React from 'react';
 import {Link, withRouter} from "react-router-dom";
 import {Container} from "react-bootstrap";
-import {StyledNavItem, StyledSideNav} from "../Styles";
+import {StyledNavItem, StyledSideNav} from "../resources/Styles";
 import Button from "@bit/nexxtway.react-rainbow.button";
-import items from "../CommonRoutes";
+import items from "../resources/CommonRoutes";
 
-const css = { alignSelf: 'flex-end' ,margin: 5, background:'#6e2629', color: '#e0d9d9', borderColor: 'transparent'}
+const css = { alignSelf: 'flex-end' , justifySelf: 'center', marginBottom: 5, fontSize: '50%', background:'#6e2629', color: '#e0d9d9', borderColor: 'transparent'}
 
 class SideNav extends React.Component {
     constructor(props) {
@@ -74,7 +74,7 @@ class SpecialButton extends React.Component{
                 shaded
                 label="Close"
                 onClick={event => document.getElementById('navbar-collapse').click(function (){document.getElementById('navbar-collapse').collapse('hide')})}
-                variant="brand" />
+                />
         }
         return null;
     }

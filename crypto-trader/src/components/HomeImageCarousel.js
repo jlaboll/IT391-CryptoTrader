@@ -1,10 +1,10 @@
 
 import React from 'react';
 import {Carousel} from "react-bootstrap";
-import image1 from "../img/395434.jpg";
-import image2 from "../img/download.jfif";
-import image3 from "../img/the-candle-chart-on-the-forex-or-stock-market-monitor-growth-and-falling-chart-at-the-black-background-rapid-change-chart_btkremjf_thumbnail-1080_01.png";
-import {ImgCarousel} from "../Styles";
+import image1 from "../resources/img/395434.jpg";
+import image2 from "../resources/img/download.jfif";
+import image3 from "../resources/img/the-candle-chart-on-the-forex-or-stock-market-monitor-growth-and-falling-chart-at-the-black-background-rapid-change-chart_btkremjf_thumbnail-1080_01.png";
+import {ImgCarousel} from "../resources/Styles";
 
 
 export const HomeImageCarousel = () => (

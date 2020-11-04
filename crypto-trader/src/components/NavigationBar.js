@@ -1,7 +1,7 @@
 import React from 'react';
 import {Navbar} from 'react-bootstrap';
 import Sidebar from "./Sidebar";
-import {CustomBar} from "../Styles";
+import {CustomBar} from "../resources/Styles";
 
 
 class CryptoHeader extends React.Component {

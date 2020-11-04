@@ -2,9 +2,10 @@ To Do - Crypto:
 Header: 
         Resolve movement of title and navbutton on sidebar open for small window sizes. 
 
-Home:
-      Dynamic layout, keep current for large displays, and linear for smaller ones. 
+Sidebar:
 
+
+Home:
       Widen container for pages on small resolutions
 
 About:
@@ -24,9 +25,7 @@ Trading:
 My Account: 
         Write page. Manage wallets, and what wallets hold here. Manage dollar amount in each wallet. Sell coin in wallet. See wallet trends (increase or decrease)
 
-Login: 
-        Format 404 error on no user.
-       
+Login:
         Make icon change to logout when logged in. 
 
          Add account header
@@ -36,6 +35,10 @@ Signup:
 
           Background and formatting
 
+Backend:
+    Fix SQL queries.
+    Fix response messages.
+
 Strech goals: Make things more pretty.
 
 ------------------------------------------------------------------------------------------------------------------------
@@ -44,9 +47,12 @@ Completed:
 
 Sidebar:
     Move close to bottom of container
+    Home carousel overlaps sidebar on mobile.
 
 Home:
     sign up correctly redirects
+    Dynamic layout, keep current for large displays, and linear for smaller ones.
 
 Login:
     Allow login.
+    Format 404 error on no user.

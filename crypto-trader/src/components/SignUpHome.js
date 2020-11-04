@@ -1,5 +1,5 @@
 import React from 'react';
-import {SignUpDiv} from "../Styles";
+import {SignUpDiv} from "../resources/Styles";
 import Button from '@bit/nexxtway.react-rainbow.button';
 import {Link} from "react-router-dom";
 

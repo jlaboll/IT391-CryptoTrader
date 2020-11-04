@@ -1,8 +1,6 @@
 module.exports = app => {
-    const wallet = require("../controllers/wallet_controller.js");
-
+    const wallet = require("../controllers/wallet_controller");
     var router = require("express").Router();
-
     // Create a new wallet
     router.post("/", wallet.create);
 

@@ -2,7 +2,7 @@ import React from 'react';
 import {Link, withRouter} from "react-router-dom";
 import {Container} from "react-bootstrap";
 import {BsHouseFill, BsInfoCircleFill, BsPencilSquare, BsPersonFill} from "react-icons/all";
-import {StyledSideNav} from "../src/Styles";
+import {StyledSideNav} from "../src/resources/Styles";
 
 class Page_Routing extends React.Component{
     constructor(props) {

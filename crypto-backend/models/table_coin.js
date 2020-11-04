@@ -2,11 +2,11 @@
 module.exports = (sequelize, Sequelize) => {
     const attributes = {
         coinid: {
-            type: Sequelize.STRING(8),
+            type: Sequelize.MEDIUMINT,
             allowNull: false,
             defaultValue: null,
             primaryKey: true,
-            autoIncrement: false,
+            autoIncrement: true,
             comment: null,
             field: "coinid",
             unique: "coinid"
@@ -39,11 +39,8 @@ module.exports = (sequelize, Sequelize) => {
             field: "api_id"
         },
         wallid: {
-            type: Sequelize.STRING(8),
-            allowNull: true,
-            defaultValue: null,
-            primaryKey: false,
-            autoIncrement: false,
+            type: Sequelize.MEDIUMINT,
+            allowNull: false,
             comment: null,
             field: "wallid",
             references: {

@@ -1,5 +1,5 @@
 import React from 'react';
-import {TrendingDiv} from "../Styles";
+import {TrendingDiv} from "../resources/Styles";
 
 export const Trending = () =>(
     <TrendingDiv className={'trending'}>

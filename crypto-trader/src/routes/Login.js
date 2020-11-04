@@ -1,5 +1,5 @@
 import React from "react";
-import {LoginContainer} from "../Styles";
+import {LoginContainer} from "../resources/Styles";
 import LoginForm from "../components/LoginForm";
 
 

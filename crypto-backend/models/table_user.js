@@ -2,19 +2,17 @@
 module.exports = (sequelize, Sequelize) => {
     const attributes = {
         user_id: {
-            type: Sequelize.STRING(8),
+            type: Sequelize.MEDIUMINT,
             allowNull: false,
-            defaultValue: null,
             primaryKey: true,
-            autoIncrement: false,
+            autoIncrement: true,
             comment: null,
             field: "user_id",
             unique: "user_id"
         },
         fname: {
             type: Sequelize.STRING(128),
-            allowNull: true,
-            defaultValue: null,
+            allowNull: false,
             primaryKey: false,
             autoIncrement: false,
             comment: null,
@@ -22,12 +20,19 @@ module.exports = (sequelize, Sequelize) => {
         },
         lname: {
             type: Sequelize.STRING(128),
-            allowNull: true,
-            defaultValue: null,
+            allowNull: false,
             primaryKey: false,
             autoIncrement: false,
             comment: null,
             field: "lname"
+        },
+        uname: {
+            type: Sequelize.STRING(128),
+            allowNull: false,
+            primaryKey: false,
+            autoIncrement: false,
+            comment: null,
+            field: "uname"
         },
         email: {
             type: Sequelize.STRING(128),
@@ -40,8 +45,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         psswd: {
             type: Sequelize.STRING(128),
-            allowNull: true,
-            defaultValue: null,
+            allowNull: false,
             primaryKey: false,
             autoIncrement: false,
             comment: null,

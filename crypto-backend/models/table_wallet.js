@@ -3,11 +3,10 @@
 module.exports = (sequelize, Sequelize) => {
     const attributes = {
         wallid: {
-            type: Sequelize.STRING(8),
+            type: Sequelize.MEDIUMINT,
             allowNull: false,
-            defaultValue: null,
             primaryKey: true,
-            autoIncrement: false,
+            autoIncrement: true,
             comment: null,
             field: "wallid",
             unique: "wallid"
@@ -15,7 +14,6 @@ module.exports = (sequelize, Sequelize) => {
         wall_name:{
             type: Sequelize.STRING(128),
             allowNull: false,
-            defaultValue: "Wallet",
             comment: null
         },
         usd: {
@@ -28,11 +26,8 @@ module.exports = (sequelize, Sequelize) => {
             field: "usd"
         },
         user_id: {
-            type: Sequelize.STRING(8),
-            allowNull: true,
-            defaultValue: null,
-            primaryKey: false,
-            autoIncrement: false,
+            type: Sequelize.MEDIUMINT,
+            allowNull: false,
             comment: null,
             field: "user_id",
             references: {

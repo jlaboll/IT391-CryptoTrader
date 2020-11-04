@@ -8,7 +8,7 @@ import  {
 } from 'react-native';
 import Button from '@bit/nexxtway.react-rainbow.button'
 import {findByLoginUser} from "../services/User_Service"
-import {TextBubble} from "../Styles";
+import {TextBubble} from "../resources/Styles";
 
 
 const css = { margin: 5, background:'#CCB114', color: '#284B63'}

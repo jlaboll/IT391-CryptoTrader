@@ -1,5 +1,5 @@
 import React from 'react';
-import {AboutDiv} from "../Styles";
+import {AboutDiv} from "../resources/Styles";
 
 
 export const About = () => (

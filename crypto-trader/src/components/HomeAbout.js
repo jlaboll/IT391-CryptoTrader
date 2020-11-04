@@ -1,5 +1,5 @@
 import React from 'react';
-import {HomeAboutDiv} from "../Styles";
+import {HomeAboutDiv} from "../resources/Styles";
 
 export const HomeAbout = () =>(
         <HomeAboutDiv className={'homeabout'}>

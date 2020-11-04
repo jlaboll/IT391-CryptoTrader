@@ -14,26 +14,29 @@ export const CustomBar = styled.div`
    display: flex;
     flex: 1;
 .navbar {
+  width: 100%;
   display: flex;
   flex: 1 0 auto;
   flex-flow: row nowrap;
-  /* This aligns items to the end line on main-axis */
-  justify-content: flex-end;
   background-color: #284B63;
 }
 
 /* Medium screens */
 @media all and (max-width: 768px) {
   .navbar {
-    /* When on medium sized screens, we center it by evenly distributing empty space around items */
-    justify-content: space-around;
+  width: 100%;
+  display: flex;
+  flex: 1 0 auto;
+  flex-flow: row nowrap;
+  .toggle{
+   position: fixed;
+  }
   }
 }
 
 /* Small screens */
 @media all and (max-width: 540px) {
   .navbar {
-    /* On small screens, we are no longer using row direction but column */
     flex-flow: row wrap;
   }
 }
@@ -68,8 +71,8 @@ export const StyledSideNav = styled.div`
   bottom: 0;
   right: 0;
   height: 100%;
-  width: 1%*inherit;     /* Set the width of the sidebar */
-  z-index: 1;      /* Stay on top of everything */ 
+  width: 75px;     /* Set the width of the sidebar */
+  z-index: 2;      /* Stay on top of everything */ 
   background-color: #86BBBD;
   overflow-x: hidden;     /* Disable horizontal scroll */
   padding-top: 1%;
@@ -101,6 +104,58 @@ export const HomeContainer = styled(Container)`
   .homeabout{
     order: 2;
     flex-basis: 40%;
+  }
+  @media all and (max-width: 768px){
+    border-bottom-left-radius: 4%;
+  border-bottom-right-radius: 4%;
+  background-color: #86BBBD;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  .homeimagecarousel{
+    flex-basis: 100%;
+    order: 0;
+  }
+  .signup{
+    order: 1;
+    flex-basis: 100%;
+    align-self: center;
+  }
+  .trending{
+    order: 2;
+    flex-basis: 100%;
+  }
+  .homeabout{
+    order: 3;
+    flex-basis: 100%;
+  }
+  }
+  @media all and (max-width: 540px){
+  border-bottom-left-radius: 4%;
+  border-bottom-right-radius: 4%;
+  background-color: #86BBBD;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-flow: wrap;
+  .homeimagecarousel{
+    flex-basis: 100%;
+    order: 0;
+  }
+  .signup{
+    order: 1;
+    flex-basis: 100%;
+    align-self: center;
+  }
+  .trending{
+    order: 2;
+    flex-basis: 100%;
+  }
+  .homeabout{
+    order: 3;
+    flex-basis: 100%;
+  }
   }
 `;
 
@@ -174,7 +229,6 @@ export const CoinDiv = styled.div`
 `;
 
 export const TextBubble = styled.text`
-    
     width: fit-content;
     height: fit-content;
     text-align: center;

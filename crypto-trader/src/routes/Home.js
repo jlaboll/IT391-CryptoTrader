@@ -3,7 +3,7 @@ import {HomeImageCarousel} from "../components/HomeImageCarousel"
 import {HomeAbout}from "../components/HomeAbout";
 import SignUpHome from "../components/SignUpHome";
 import {Trending} from "../components/Trending";
-import {HomeContainer} from "../Styles";
+import {HomeContainer} from "../resources/Styles";
 
 
 export const Home = () => (
