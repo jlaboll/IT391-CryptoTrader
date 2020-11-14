@@ -6,14 +6,16 @@ Sidebar:
 
 
 Home:
-      Widen container for pages on small resolutions
+      Widen container for pages on small resolutions (may not be needed)
 
 About:
-      Write about section, add images, describe project and how it was done, give props to ourselves. 
-
+      Edit about for grammar and presentably,
+       add images
        Add background
 
 Trading:
+        Wallet selection
+       Add account header
        Live feedback on coin prices
    
        Full coin names
@@ -23,12 +25,15 @@ Trading:
        Live change wallets. 
 
 My Account: 
-        Write page. Manage wallets, and what wallets hold here. Manage dollar amount in each wallet. Sell coin in wallet. See wallet trends (increase or decrease)
+        Write page.
+        Manage wallets, and what wallets hold here.
+         Manage dollar amount in each wallet.
+         Sell coin in wallet.
+         See wallet trends (increase or decrease)
 
 Login:
         Make icon change to logout when logged in. 
 
-         Add account header
 
 Signup:
            Allow signup
@@ -56,3 +61,6 @@ Home:
 Login:
     Allow login.
     Format 404 error on no user.
+
+About:
+    Write about section.
