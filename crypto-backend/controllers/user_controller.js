@@ -5,22 +5,20 @@ const Op = db.Sequelize.Op;
 // Create and Save a new User
 exports.create = (req, res) => {
     // Validate request
-    if (!req.body.title) {
+    if (req.body == null) {
         res.status(400).send({
             message: "Content can not be empty!"
         });
         return;
     }
-
-    // Create a User
     const user = {
-        fname: req.body.fname,
-        lname: req.body.lname,
-        uname: req.body.uname,
-        email: req.body.email,
-        psswd: req.body.psswd
+        fname: req.body.fname.toString(),
+        lname: req.body.lname.toString(),
+        uname: req.body.uname.toString(),
+        email: req.body.email.toString(),
+        psswd: req.body.psswd.toString()
     };
-
+    console.log(user)
     // Save User in the database
     User.create(user)
         .then(data => {
@@ -52,7 +50,7 @@ exports.findAll = (req, res) => {
 };
 
 // Find a single User with an id
-exports.findOne = (req, res) => {
+exports.findByID = (req, res) => {
     const id = req.params.id;
 
     User.findByPk(id)
@@ -74,7 +72,7 @@ exports.update = (req, res) => {
         where: { id: id }
     })
         .then(num => {
-            if (num == 1) {
+            if (num === 1) {
                 res.send({
                     message: "Coin was updated successfully."
                 });
@@ -138,13 +136,16 @@ exports.findByLogin = (req, res)=>{
     const pass = req.params.passwd;
 
     User.findOne({
-        where:{
-            email: uname,
+        where: {
+            uname: uname,
             psswd: pass
         }
     })
             .then(data => {
-                res.send(data.json());
+                if(data.isEmpty()) res.status(500).send({
+                    message: "Error retrieving User with id=" + id
+                });
+                else res.status(200).send(data);
             })
             .catch(err => {
                 res.status(500).send({

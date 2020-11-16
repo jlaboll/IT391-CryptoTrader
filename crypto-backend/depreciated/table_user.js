@@ -6,7 +6,6 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: false,
             primaryKey: true,
             autoIncrement: true,
-            comment: null,
             field: "user_id",
             unique: "user_id"
         },
@@ -16,7 +15,8 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: false,
             autoIncrement: false,
             comment: null,
-            field: "fname"
+            field: "fname",
+            defaultValue: "fake_data"
         },
         lname: {
             type: Sequelize.STRING(128),
@@ -24,7 +24,8 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: false,
             autoIncrement: false,
             comment: null,
-            field: "lname"
+            field: "lname",
+            defaultValue: "fake_data"
         },
         uname: {
             type: Sequelize.STRING(128),
@@ -32,7 +33,8 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: false,
             autoIncrement: false,
             comment: null,
-            field: "uname"
+            field: "uname",
+            defaultValue: "fake_data"
         },
         email: {
             type: Sequelize.STRING(128),
@@ -49,13 +51,16 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: false,
             autoIncrement: false,
             comment: null,
-            field: "psswd"
+            field: "psswd",
+            defaultValue: "fake_data"
         }
     };
     const options = {
         tableName: "user",
         comment: "",
-        indexes: []
+        autoIncrementIdentity: "user_id",
+        initialAutoIncrement: 1,
+        timestamps: false
     };
     return sequelize.define("user_model", attributes, options);
 };

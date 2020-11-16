@@ -18,7 +18,7 @@ export default class SignUp extends Component {
         fname: '',
         lname: '',
         email: '',
-        username: '',
+        uname: '',
         password: '',
         passwd_check: '',
         isSigningUp: false,
@@ -26,30 +26,35 @@ export default class SignUp extends Component {
     }
 
     _userSignUp = () => {
-
+        let user = "no_user";
         this.setState({ isSigningUp: true, message: '' });
-
-        var params = {
+        let params = JSON.stringify({
             fname: this.state.fname,
             lname: this.state.lname,
-            uname: this.state.username,
+            uname: this.state.uname,
             email: this.state.email,
             psswd: this.state.password
-        };
+        });
         if(!this.state.password === this.state.passwd_check){
             this.setState({ message: 'Passwords do not match!' });
         }
         else{
             var proceed = false;
             createUser(params)
-                .then((response) => response)
                 .then((response) => {
-                    if (response.status===200) proceed = true;
+                    if (response.status===200) {
+                        user = response.data.uname;
+                        proceed = true;
+                    }
+                    if (response.status === 500) {
+                        this.setState({message: "All fields are required."});
+                        proceed = false;
+                    }
                     else this.setState({ message: response.status.message });
                 })
                 .then(() => {
                     this.setState({ isSigningUp: false })
-                    if (proceed) this.props.onSignUp();
+                    if (proceed) this.setState({message: user});
                 })
                 .catch(err => {
                     this.setState({ message: err.message });
@@ -99,7 +104,7 @@ export default class SignUp extends Component {
                     style={{padding:'4px', background: '#94d6d6'}}
                     ref={component => this._fname = component}
                     placeholder='First Name'
-                    onChangeText={(fname) => this.setState({fname})}
+                    onChangeText={(fname) => this.setState({fname: fname})}
                     autoFocus={true}
                     onFocus={this.clearFirstName}
                 />
@@ -108,7 +113,7 @@ export default class SignUp extends Component {
                     style={{padding:'4px', background: '#94d6d6'}}
                     ref={component => this._lname = component}
                     placeholder='Last Name'
-                    onChangeText={(lname) => this.setState({lname})}
+                    onChangeText={(lname) => this.setState({lname: lname})}
                     autoFocus={true}
                     onFocus={this.clearLastName}
                 />
@@ -117,7 +122,7 @@ export default class SignUp extends Component {
                     style={{padding:'4px', background: '#94d6d6'}}
                     ref={component => this._uname = component}
                     placeholder='Username'
-                    onChangeText={(uname) => this.setState({uname})}
+                    onChangeText={(uname) => this.setState({uname: uname})}
                     autoFocus={true}
                     onFocus={this.clearUsername}
                 />
@@ -126,7 +131,7 @@ export default class SignUp extends Component {
                     style={{padding:'4px', background: '#94d6d6'}}
                     ref={component => this._email = component}
                     placeholder='Email (optional)'
-                    onChangeText={(email) => this.setState({email})}
+                    onChangeText={(email) => this.setState({email: email})}
                     autoFocus={true}
                     onFocus={this.clearEmail}
                 />
@@ -135,7 +140,7 @@ export default class SignUp extends Component {
                     style={{padding:'4px', background: '#94d6d6'}}
                     ref={component => this._psswd = component}
                     placeholder='Password'
-                    onChangeText={(password) => this.setState({password})}
+                    onChangeText={(password) => this.setState({password: password})}
                     secureTextEntry={true}
                     onFocus={this.clearPassword}
                 />
@@ -144,7 +149,7 @@ export default class SignUp extends Component {
                     style={{padding:'4px', background: '#94d6d6'}}
                     ref={component => this._psswd_check = component}
                     placeholder='Confirm Password'
-                    onChangeText={(passwrd_check) => this.setState({passwrd_check})}
+                    onChangeText={(passwrd_check) => this.setState({passwrd_check: passwrd_check})}
                     secureTextEntry={true}
                     onFocus={this.clearPassCheck}
                     onSubmitEditing={this._userLogin}

@@ -26,24 +26,31 @@ export default class LoginForm extends Component {
 
         this.setState({ isLoggingIn: true, message: '' });
 
-        var params = {
+        let body = JSON.stringify({
             uname: this.state.username,
             passwd: this.state.password
-        };
-
-        var proceed = false;
-        findByLoginUser(params)
-            .then((response) => response.json())
+        });
+        let user = "no_user";
+        let proceed = false;
+        findByLoginUser(body)
             .then((response) => {
-                if (response.status===200) proceed = true;
+                if (response.status === 200) {
+                    user = response.data.user_id;
+                    proceed = true;
+                }
+                if (response.status === 500) {
+                    this.setState({message: "Username or Password incorrect."});
+                    proceed = false;
+                }
                 else this.setState({ message: response.message });
             })
             .then(() => {
                 this.setState({ isLoggingIn: false })
-                if (proceed) this.props.onLoginPress();
+                if (proceed) this.setState({message: user})
             })
             .catch(err => {
-                this.setState({ message: err.message });
+                if(err.status === 500) this.setState({message: "Username or Password incorrect."});
+                else this.setState({ message: err.message });
                 this.setState({ isLoggingIn: false })
             });
     }
@@ -69,7 +76,7 @@ export default class LoginForm extends Component {
                     style={{padding:'4px', background: '#94d6d6'}}
                     ref={component => this._username = component}
                     placeholder='Username'
-                    onChangeText={(username) => this.setState({username})}
+                    onChangeText={(username) => this.setState({username: username})}
                     autoFocus={true}
                     onFocus={this.clearUsername}
                 />
@@ -78,7 +85,7 @@ export default class LoginForm extends Component {
                     style={{padding:'4px', background: '#94d6d6'}}
                     ref={component => this._password = component}
                     placeholder='Password'
-                    onChangeText={(password) => this.setState({password})}
+                    onChangeText={(password) => this.setState({password: password})}
                     secureTextEntry={true}
                     onFocus={this.clearPassword}
                     onSubmitEditing={this._userLogin}
@@ -94,6 +101,7 @@ export default class LoginForm extends Component {
                 <Button
                     style={css}
                     shaded
+                    disabled={this.state.isLoggingIn||!this.state.username||!this.state.password}
                     label="Submit"
                     onClick={this._userLogin}
                     variant="brand" />
