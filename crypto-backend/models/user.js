@@ -1,6 +1,4 @@
 /* jshint indent: 2 */
-
-const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('user', {
     user_id: {
@@ -11,15 +9,18 @@ module.exports = function(sequelize, DataTypes) {
     },
     fname: {
       type: DataTypes.STRING(128),
-      allowNull: false
+      allowNull: false,
+      defaultValue: "null"
     },
     lname: {
       type: DataTypes.STRING(128),
-      allowNull: false
+      allowNull: false,
+      defaultValue: "null"
     },
     uname: {
       type: DataTypes.STRING(128),
       allowNull: false,
+        defaultValue: "null",
       unique: "uname"
     },
     email: {
@@ -28,7 +29,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     psswd: {
       type: DataTypes.STRING(128),
-      allowNull: false
+      allowNull: false,
+      defaultValue: "null"
     }
   }, {
     sequelize,

@@ -47,17 +47,20 @@ export default class SignUp extends Component {
                         proceed = true;
                     }
                     if (response.status === 500) {
+                        //add check for dupe username
                         this.setState({message: "All fields are required."});
                         proceed = false;
                     }
-                    else this.setState({ message: response.status.message });
+                    else if(this.state.uname === response.data.uname){
+                        //Come back to notify of new account made.
+
+                    }
                 })
                 .then(() => {
                     this.setState({ isSigningUp: false })
                     if (proceed) this.setState({message: user});
                 })
                 .catch(err => {
-                    this.setState({ message: err.message });
                     this.setState({ isSigningUp: false })
                 });
         }

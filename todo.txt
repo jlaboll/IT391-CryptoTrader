@@ -9,7 +9,7 @@ Home:
       Widen container for pages on small resolutions (may not be needed)
 
 About:
-      Edit about for grammar and presentably,
+      Edit about for grammar and respectability,
        add images
        Add background
 
@@ -36,13 +36,14 @@ Login:
 
 
 Signup:
-           Allow signup
-
+          format responses
           Background and formatting
 
 Backend:
-    Fix SQL queries.
     Fix response messages.
+
+Redux:
+    Implement UserID with Redux for login/signup
 
 Strech goals: Make things more pretty.
 
@@ -61,6 +62,9 @@ Home:
 Login:
     Allow login.
     Format 404 error on no user.
+
+Signup:
+           Allow signup
 
 About:
     Write about section.

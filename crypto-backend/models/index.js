@@ -1,10 +1,12 @@
 const dbConfig = require("../config/db_config.js");
 const Sequelize = require("sequelize");
-const initModels = require("./init-models");
+var _coin = require("./coin");
+var _user = require("./user");
+var _wallet = require("./wallet");
 const sqlize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
     host: dbConfig.HOST,
     dialect: dbConfig.dialect,
-
+    logging: console.log,
     pool: {
         max: dbConfig.pool.max,
         min: dbConfig.pool.min,
@@ -22,9 +24,16 @@ async function testConnection(){
     }
 }
 testConnection();
-const db = {};
+const db = {}
 db.Sequelize = Sequelize;
 db.sequelize = sqlize;
-db.coin, db.user, db.wallet = initModels(sqlize);
+db.coin = _coin(sqlize, Sequelize);
+db.user = _user(sqlize, Sequelize);
+db.wallet = _wallet(sqlize, Sequelize);
+
+db.coin.belongsTo(db.wallet, { foreignKey: "wallid"});
+db.wallet.hasMany(db.coin, { foreignKey: "wallid"});
+db.wallet.belongsTo(db.user, { foreignKey: "user_id"});
+db.user.hasMany(db.wallet, { foreignKey: "user_id"});
 
 module.exports = db;

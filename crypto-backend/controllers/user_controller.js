@@ -12,15 +12,15 @@ exports.create = (req, res) => {
         return;
     }
     const user = {
+        user_id: 0,
         fname: req.body.fname.toString(),
         lname: req.body.lname.toString(),
         uname: req.body.uname.toString(),
         email: req.body.email.toString(),
         psswd: req.body.psswd.toString()
     };
-    console.log(user)
     // Save User in the database
-    User.create(user)
+    User.build(user).save()
         .then(data => {
             res.send(data);
         })
@@ -133,7 +133,7 @@ exports.deleteAll = (req, res) => {
 
 exports.findByLogin = (req, res)=>{
     const uname = req.params.uname;
-    const pass = req.params.passwd;
+    const pass = req.params.psswd;
 
     User.findOne({
         where: {
@@ -143,13 +143,13 @@ exports.findByLogin = (req, res)=>{
     })
             .then(data => {
                 if(data.isEmpty()) res.status(500).send({
-                    message: "Error retrieving User with id=" + id
+                    message: "Error retrieving User with name=" + uname
                 });
                 else res.status(200).send(data);
             })
             .catch(err => {
                 res.status(500).send({
-                    message: "Error retrieving User with id=" + id
+                    message: "Error retrieving User with name=" + uname
                 });
             });
 

@@ -26,13 +26,13 @@ export default class LoginForm extends Component {
 
         this.setState({ isLoggingIn: true, message: '' });
 
-        let body = JSON.stringify({
+        let params = JSON.stringify({
             uname: this.state.username,
-            passwd: this.state.password
+            psswd: this.state.password
         });
         let user = "no_user";
         let proceed = false;
-        findByLoginUser(body)
+        findByLoginUser(params)
             .then((response) => {
                 if (response.status === 200) {
                     user = response.data.user_id;
@@ -42,11 +42,13 @@ export default class LoginForm extends Component {
                     this.setState({message: "Username or Password incorrect."});
                     proceed = false;
                 }
-                else this.setState({ message: response.message });
+                else this.setState({ message: response.data.uname });
             })
             .then(() => {
                 this.setState({ isLoggingIn: false })
-                if (proceed) this.setState({message: user})
+                if (proceed){
+                    //something?
+                }
             })
             .catch(err => {
                 if(err.status === 500) this.setState({message: "Username or Password incorrect."});
