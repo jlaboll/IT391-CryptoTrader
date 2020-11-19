@@ -1,9 +1,9 @@
 import React from 'react';
 import {Link, withRouter} from "react-router-dom";
 import {Container} from "react-bootstrap";
-import {StyledNavItem, StyledSideNav} from "../resources/Styles";
+import {StyledNavItem, StyledSideNav} from "../src/resources/Styles";
 import Button from "@bit/nexxtway.react-rainbow.button";
-import items from "../resources/CommonRoutes";
+import items from "../src/resources/CommonRoutes";
 
 const css = {
     alignSelf: 'flex-end',

@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-import { accountService, alertService } from '../../_services';
+import { accountService, alertService } from '@/_services';
 
 function AddEdit({ history, match }) {
     const { id } = match.params;
     const isAddMode = !id;
     
     const initialValues = {
-        username: '',
+        title: '',
         firstName: '',
         lastName: '',
         email: '',
@@ -20,8 +20,8 @@ function AddEdit({ history, match }) {
     };
 
     const validationSchema = Yup.object().shape({
-        username: Yup.string()
-            .required('Username is required'),
+        title: Yup.string()
+            .required('Title is required'),
         firstName: Yup.string()
             .required('First Name is required'),
         lastName: Yup.string()
@@ -92,9 +92,14 @@ function AddEdit({ history, match }) {
                         <h1>{isAddMode ? 'Add User' : 'Edit User'}</h1>
                         <div className="form-row">
                             <div className="form-group col">
-                                <label>Username</label>
-                                <Field name="username" type="text" className={'form-control' + (errors.username && touched.username ? ' is-invalid' : '')} />
-                                <ErrorMessage name="firstName" component="div" className="invalid-feedback" />
+                                <label>Title</label>
+                                <Field name="title" as="select" className={'form-control' + (errors.title && touched.title ? ' is-invalid' : '')}>
+                                    <option value=""></option>
+                                    <option value="Mr">Mr</option>
+                                    <option value="Mrs">Mrs</option>
+                                    <option value="Miss">Miss</option>
+                                    <option value="Ms">Ms</option>
+                                </Field>
                                 <ErrorMessage name="title" component="div" className="invalid-feedback" />
                             </div>
                             <div className="form-group col-5">

@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-import { accountService, alertService } from '../_services';
+import { accountService, alertService } from '@/_services';
 
 function Update({ history }) {
     const user = accountService.userValue;
     const initialValues = {
-        username: user.username,
+        title: user.title,
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
