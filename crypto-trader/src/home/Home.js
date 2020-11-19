@@ -1,8 +1,8 @@
 import React from 'react';
-import {HomeImageCarousel} from "../components/HomeImageCarousel"
-import {HomeAbout} from "../components/HomeAbout";
-import SignUpHome from "../components/SignUpHome";
-import {Trending} from "../components/Trending";
+import {HomeImageCarousel} from "./HomeImageCarousel"
+import {HomeAbout} from "./HomeAbout";
+import SignUpHome from "./SignUpHome";
+import {Trending} from "./Trending";
 import {HomeContainer} from "../resources/Styles";
 
 

@@ -1,6 +1,6 @@
 import React from "react";
-import {LoginContainer} from "../resources/Styles";
-import LoginForm from "../components/LoginForm";
+import {LoginContainer} from "../src/resources/Styles";
+import LoginForm from "../src/_components/LoginForm";
 
 
 export class Login extends React.Component {

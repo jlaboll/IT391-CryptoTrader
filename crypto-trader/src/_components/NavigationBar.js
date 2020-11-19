@@ -2,7 +2,7 @@ import React from 'react';
 import {Navbar} from 'react-bootstrap';
 import Sidebar from "./Sidebar";
 import {CustomBar} from "../resources/Styles";
-import {AccountBox} from "./AccountBox"
+import {AccountBox} from "../../depreciated/AccountBox"
 
 
 class CryptoHeader extends React.Component {
