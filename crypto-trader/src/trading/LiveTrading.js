@@ -1,6 +1,6 @@
 import React, {Fragment, useState, useEffect} from 'react';
 import axios from 'axios';
-import Wallet from '../src/_components/Wallet'
+import Wallet from '../_components/Wallet'
 
 function Data() {
 

@@ -1,20 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch, Redirect, useLocation } from 'react-router-dom';
 
-import { Role } from '@/_helpers';
-import { accountService } from '@/_services';
-import { Nav, PrivateRoute, Alert } from '@/_components';
-import { Home } from '@/home';
-import { Profile } from '@/profile';
-import { Admin } from '@/admin';
-import { Account } from '@/account';
-import {About} from "../about/About";
-import RequireAuth from "../../depreciated/auth/require_auth";
-import {LiveTrading} from "../../trading/LiveTrading";
-import {Login} from "../../depreciated/Login";
-import SignUp from "../../depreciated/SignUp";
-import {NoMatch} from "../routes/NoMatch";
-import {StyledSwitch} from "../resources/Styles";
+import { Role } from '../_helpers';
+import { accountService } from '../_services';
+import { Nav, PrivateRoute, Alert } from '../_components';
+import { Home } from '../home';
+import { Profile } from '../profile';
+import { Admin } from '../admin';
+import { Account } from '../account';
+import {LiveTrading} from "../trading/LiveTrading";
 
 function App() {
     const { pathname } = useLocation();  
@@ -30,12 +24,11 @@ function App() {
             <Nav />
             <Alert />
             <Switch>
-                <Route exact path="/" component={Home}/>
-                <Route path="/about" component={About}/>
                 <Redirect from="/:url*(/+)" to={pathname.slice(0, -1)} />
                 <PrivateRoute exact path="/" component={Home} />
                 <PrivateRoute path="/live-trading" component={LiveTrading}/>
                 <PrivateRoute path="/profile" component={Profile} />
+                <PrivateRoute path="/admin" roles={[Role.Admin]} component={Admin}/>
                 <Route path="/account" component={Account} />
                 <Redirect from="*" to="/" />
             </Switch>

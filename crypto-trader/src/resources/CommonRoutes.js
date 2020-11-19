@@ -1,4 +1,4 @@
-import {BsGraphUp, BsHouseFill, BsInfoCircleFill, BsPencilSquare, BsPersonFill} from "react-icons/all";
+import {BsGraphUp, BsHouseFill, BsInfoCircleFill, BsXOctagonFill, BsPersonFill} from "react-icons/all";
 import React from "react";
 
 let items;
@@ -25,17 +25,17 @@ items = [
         key: 3
     },
     {
-        path: '/login',
-        name: 'Login',
-        id: 'login_item_clickable',
+        path: '/profile',
+        name: 'My Account',
+        id: 'profile_item_clickable',
         as: <BsPersonFill/>,
         key: 4
     },
     {
-        path: '/signup',
-        name: 'Sign Up',
-        id: 'sign_up_item_clickable',
-        as: <BsPencilSquare/>,
+        path: '/logout',
+        name: 'Logout',
+        id: 'log_out_item_clickable',
+        as: <BsXOctagonFill/>,
         key: 5
     },
 // { //Not being used, as this is an error page.

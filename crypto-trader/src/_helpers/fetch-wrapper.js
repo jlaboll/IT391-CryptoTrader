@@ -1,5 +1,5 @@
 import config from 'config';
-import { accountService } from '@/_services';
+import { accountService } from '../_services';
 
 export const fetchWrapper = {
     get,

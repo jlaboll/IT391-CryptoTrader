@@ -6,7 +6,7 @@ import {Trending} from "./Trending";
 import {HomeContainer} from "../resources/Styles";
 
 
-export const Home = () => (
+export const HomePage = () => (
     <HomeContainer>
         <HomeImageCarousel/>
         <SignUpHome/>
