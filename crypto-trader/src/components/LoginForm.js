@@ -3,7 +3,6 @@ import {ActivityIndicator, ScrollView, Text, TextInput, View} from 'react-native
 import Button from '@bit/nexxtway.react-rainbow.button'
 import {findByLoginUser} from "../services/User_Service"
 import {TextBubble} from "../resources/Styles";
-import {useStore} from 'react-redux'
 
 const css = {margin: 5, background: '#CCB114', color: '#284B63'}
 
