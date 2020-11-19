@@ -3,4 +3,5 @@
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="FLOW" />
   </component>
+  <component name="ReactNativePackager" nodePath="project" reactNativePackagePath="$PROJECT_DIR$/crypto-trader/node_modules/react-native" workingDirectory="$PROJECT_DIR$/crypto-trader" />
 </project>

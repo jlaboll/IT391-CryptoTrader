@@ -38,15 +38,17 @@ export class CoinWindow extends React.Component {
     }
 }
 
-class CoinItem extends React.Component{
+class CoinItem extends React.Component {
 
     constructor(props) {
         super(props);
         var Client = require('coinbase').Client;
-        var client = new Client({'apiKey': '28tBnplnzLW1phPt',
-            'apiSecret': 'Ds1gqP3RqAqWxeZ8HgQ4G4kuhNKiHvBW'});
+        var client = new Client({
+            'apiKey': '28tBnplnzLW1phPt',
+            'apiSecret': 'Ds1gqP3RqAqWxeZ8HgQ4G4kuhNKiHvBW'
+        });
 
-        client.getExchangeRates({'currency': 'BTC'}, function(err, rates) {
+        client.getExchangeRates({'currency': 'BTC'}, function (err, rates) {
             console.log(rates);
         });
     }

@@ -5,7 +5,15 @@ import {StyledNavItem, StyledSideNav} from "../resources/Styles";
 import Button from "@bit/nexxtway.react-rainbow.button";
 import items from "../resources/CommonRoutes";
 
-const css = { alignSelf: 'flex-end' , justifySelf: 'center', marginBottom: 5, fontSize: '50%', background:'#6e2629', color: '#e0d9d9', borderColor: 'transparent'}
+const css = {
+    alignSelf: 'flex-end',
+    justifySelf: 'center',
+    marginBottom: 5,
+    fontSize: '50%',
+    background: '#6e2629',
+    color: '#e0d9d9',
+    borderColor: 'transparent'
+}
 
 class SideNav extends React.Component {
     constructor(props) {
@@ -31,7 +39,7 @@ class SideNav extends React.Component {
                             <NavItem path={item.path}
                                      name={item.name}
                                      as={item.as}
-                                     id = {item.id}
+                                     id={item.id}
                                      onItemClick={this.onItemClick}
                                      active={item.path === activePath}
                                      key={item.key}/>
@@ -39,7 +47,7 @@ class SideNav extends React.Component {
                     })
                 }
                 <Container style={{height: '100%'}}>
-                <SpecialButton/>
+                    <SpecialButton/>
                 </Container>
             </StyledSideNav>
         );
@@ -47,10 +55,10 @@ class SideNav extends React.Component {
 
 }
 
-class SpecialButton extends React.Component{
+class SpecialButton extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { width: 0, height: 0 };
+        this.state = {width: 0, height: 0};
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     }
 
@@ -64,17 +72,20 @@ class SpecialButton extends React.Component{
     }
 
     updateWindowDimensions() {
-        this.setState({ width: window.innerWidth, height: window.innerHeight });
+        this.setState({width: window.innerWidth, height: window.innerHeight});
     }
+
     render() {
         const width = this.state.width;
-        if(width < 768){
+        if (width < 768) {
             return <Button
                 style={css}
                 shaded
                 label="Close"
-                onClick={event => document.getElementById('navbar-collapse').click(function (){document.getElementById('navbar-collapse').collapse('hide')})}
-                />
+                onClick={event => document.getElementById('navbar-collapse').click(function () {
+                    document.getElementById('navbar-collapse').collapse('hide')
+                })}
+            />
         }
         return null;
     }
@@ -91,7 +102,7 @@ class NavItem extends React.Component {
         const {active} = this.props;
         const as = this.props.as;
         return (
-            <StyledNavItem active={active} >
+            <StyledNavItem active={active}>
                 <Link to={this.props.path} onClick={this.handleClick} id={this.props.id}>
                     <Container style={{justifyContent: "center", display: 'flex', flexFlow: 'column nowrap'}}>
                         {as}

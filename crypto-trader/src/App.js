@@ -2,7 +2,7 @@ import React from 'react';
 import {Home} from './routes/Home';
 import {About} from './routes/About';
 import {NoMatch} from './routes/NoMatch';
-import{Login} from "./routes/Login";
+import {Login} from "./routes/Login";
 import SignUp from "./routes/SignUp";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import {NavigationBar} from './components/NavigationBar';
@@ -10,11 +10,11 @@ import {Body, StyledSwitch} from "./resources/Styles";
 import {LiveTrading} from "./routes/LiveTrading";
 
 
-
 export default class App extends React.Component {
     constructor(props) {
         super(props);
     }
+
     render() {
         return (
             <Router>

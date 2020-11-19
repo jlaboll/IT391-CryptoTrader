@@ -1,17 +1,11 @@
 import React, {Component} from 'react';
-import  {
-    ScrollView,
-    Text,
-    TextInput,
-    View,
-    ActivityIndicator
-} from 'react-native';
+import {ActivityIndicator, ScrollView, Text, TextInput, View} from 'react-native';
 import Button from '@bit/nexxtway.react-rainbow.button'
 import {findByLoginUser} from "../services/User_Service"
 import {TextBubble} from "../resources/Styles";
+import {useStore} from 'react-redux'
 
-
-const css = { margin: 5, background:'#CCB114', color: '#284B63'}
+const css = {margin: 5, background: '#CCB114', color: '#284B63'}
 
 export default class LoginForm extends Component {
 
@@ -24,47 +18,42 @@ export default class LoginForm extends Component {
 
     _userLogin = () => {
 
-        this.setState({ isLoggingIn: true, message: '' });
+        this.setState({isLoggingIn: true, message: ''});
 
         let params = JSON.stringify({
             uname: this.state.username,
             psswd: this.state.password
         });
         let user = "no_user";
-        let proceed = false;
         findByLoginUser(params)
             .then((response) => {
                 if (response.status === 200) {
                     user = response.data.user_id;
-                    proceed = true;
                 }
                 if (response.status === 500) {
                     this.setState({message: "Username or Password incorrect."});
-                    proceed = false;
                 }
-                else this.setState({ message: response.data.uname });
+                    this.setState({message: response.data.uname});
+
             })
             .then(() => {
-                this.setState({ isLoggingIn: false })
-                if (proceed){
-                    //something?
-                }
+                this.setState({isLoggingIn: false})
             })
             .catch(err => {
-                if(err.status === 500) this.setState({message: "Username or Password incorrect."});
-                else this.setState({ message: err.message });
-                this.setState({ isLoggingIn: false })
+                if (err.status === 500) this.setState({message: "Username or Password incorrect."});
+                else this.setState({message: err.message});
+                this.setState({isLoggingIn: false})
             });
     }
 
     clearUsername = () => {
-        this._username.setNativeProps({ text: '' });
-        this.setState({ message: '' });
+        this._username.setNativeProps({text: ''});
+        this.setState({message: ''});
     }
 
     clearPassword = () => {
-        this._password.setNativeProps({ text: '' });
-        this.setState({ message: '' });
+        this._password.setNativeProps({text: ''});
+        this.setState({message: ''});
     }
 
     render() {
@@ -73,18 +62,18 @@ export default class LoginForm extends Component {
                 <TextBubble>
                     Login
                 </TextBubble>
-                <View style={{margin:5}} />
+                <View style={{margin: 5}}/>
                 <TextInput
-                    style={{padding:'4px', background: '#94d6d6'}}
+                    style={{padding: '4px', background: '#94d6d6'}}
                     ref={component => this._username = component}
                     placeholder='Username'
                     onChangeText={(username) => this.setState({username: username})}
                     autoFocus={true}
                     onFocus={this.clearUsername}
                 />
-                <View style={{margin:5}} />
+                <View style={{margin: 5}}/>
                 <TextInput
-                    style={{padding:'4px', background: '#94d6d6'}}
+                    style={{padding: '4px', background: '#94d6d6'}}
                     ref={component => this._password = component}
                     placeholder='Password'
                     onChangeText={(password) => this.setState({password: password})}
@@ -98,21 +87,21 @@ export default class LoginForm extends Component {
                         {this.state.message}
                     </Text>
                 )}
-                {this.state.isLoggingIn && <ActivityIndicator />}
-                <View style={{margin:5}} />
+                {this.state.isLoggingIn && <ActivityIndicator/>}
+                <View style={{margin: 5}}/>
                 <Button
                     style={css}
                     shaded
-                    disabled={this.state.isLoggingIn||!this.state.username||!this.state.password}
+                    disabled={this.state.isLoggingIn || !this.state.username || !this.state.password}
                     label="Submit"
                     onClick={this._userLogin}
-                    variant="brand" />
+                    variant="brand"/>
                 <Button
                     style={css}
                     shaded
                     label="Sign Up"
-                    onClick={event => window.location.href='/signup'}
-                    variant="brand" />
+                    onClick={event => window.location.href = '/signup'}
+                    variant="brand"/>
             </ScrollView>
         )
     }
