@@ -36,9 +36,9 @@ exports.create = (req, res) => {
 // Retrieve all Wallets from the database.
 exports.findAll = (req, res) => {
     const wallet = req.query.wall_name;
-    var condition = wallet ? { wall_name: { [Op.like]: `%${wallet}%` } } : null;
+    var condition = wallet ? {wall_name: {[Op.like]: `%${wallet}%`}} : null;
 
-    Wallet.findAll({ where: condition })
+    Wallet.findAll({where: condition})
         .then(data => {
             res.send(data);
         })
@@ -70,7 +70,7 @@ exports.update = (req, res) => {
     const id = req.params.id;
 
     Wallet.update(req.body, {
-        where: { id: id }
+        where: {id: id}
     })
         .then(num => {
             if (num == 1) {
@@ -95,7 +95,7 @@ exports.delete = (req, res) => {
     const id = req.params.id;
 
     Wallet.destroy({
-        where: { id: id }
+        where: {id: id}
     })
         .then(num => {
             if (num == 1) {
@@ -122,7 +122,7 @@ exports.deleteAll = (req, res) => {
         truncate: false
     })
         .then(nums => {
-            res.send({ message: `${nums} Wallets were deleted successfully!` });
+            res.send({message: `${nums} Wallets were deleted successfully!`});
         })
         .catch(err => {
             res.status(500).send({
@@ -132,10 +132,10 @@ exports.deleteAll = (req, res) => {
         });
 };
 
-exports.findByUserId = (req, res) =>{
+exports.findByUserId = (req, res) => {
     const user_id = req.params.user_id;
     Wallet.findAll({
-        where:{
+        where: {
             user_id: user_id
         }
     })

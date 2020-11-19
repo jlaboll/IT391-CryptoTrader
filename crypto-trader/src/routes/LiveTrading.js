@@ -1,53 +1,59 @@
-import React from 'react';
+import React, {Fragment, useState, useEffect} from 'react';
 import axios from 'axios';
 import Wallet from '../components/Wallet'
 
+function Data() {
 
-export class LiveTrading extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            cryptos: [],
-            coinlist: {},
-            page_count: 0,
-            page: 0
+}
+
+export function LiveTrading(){
+    const [coinlist, addCoin] = useState([])
+    const [crypto, addCrypto] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
+    addCoin(coin => [...coinlist, coin])
+    addCrypto(coin => [...crypto, coin])
+
+    useEffect( () => {
+        const fetchCoins = async () => {
+            setIsLoading(true);
+            const result = await axios.get(
+                'https://min-api.cryptocompare.com/data/all/coinlist',
+            );
+            result.data.Data.map(key => (
+                addCoin(key.Symbol)
+            ));
         };
-    }
-
-
-    componentDidMount() {
-        axios.get('https://min-api.cryptocompare.com/data/all/coinlist').then(
-            (res) => {
-                this.setState({cryptos: res.data.Data});
-            }
-    );
-
-    }
-
-
-
-    getCoin(item){
-        console.log(item);
-        axios.get('https://min-api.cryptocompare.com/data/price?fsyms=' + item + '&tsyms=USD')
-            .then(res => {
-                return res.data;
-            });
-    }
-
-
-    render() {
+        const fetchCryptos = async (item) =>{
+            const result = await axios.get('https://min-api.cryptocompare.com/data/price?fsyms=' + item + '&tsyms=USD',);
+            addCrypto(result.data);
+        };
+        fetchCoins();
+        coinlist.map(key =>
+            fetchCryptos(key)
+        );
+        setIsLoading(false);
+    }, []);
 
         return (
             <div className="container">
+                {/*<ul>*/}
+                {/*    {coinlist.Data.map(item => (*/}
+                {/*        <li key = {item}>*/}
+                {/*            <a href={'https://min-api.cryptocompare.com/data/price?fsyms=' + item.Symbol + '&tsyms=USD'}>{item.Symbol}</a>*/}
+                {/*        </li>*/}
+                {/*    ))}*/}
+                {/*</ul>*/}
                 <h1>Coin Trading</h1>
-                {/*<button onClick={event => this.render()}>Refresh</button>*/}
-                <div>
-                    {Object.keys(this.state.cryptos).map((key) => (
-                        <Wallet key={key} coin={key} coinValue={this.state.cryptos[key].USD}/>
+                {/*<button onClick={() => loadCoins()}>Refresh</button>*/}
+                {isLoading ? (
+                    <div>Loading ...</div>
+                ) :<div>
+                    {Object.keys(crypto).map((key) => (
+                        <Wallet key={key} coin={key} coinValue={crypto[key].USD}/>
                     ))}
-                </div>
+                </div>}
             </div>
 
         );
-    }
+
 }

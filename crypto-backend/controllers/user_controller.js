@@ -35,9 +35,9 @@ exports.create = (req, res) => {
 // Retrieve all Users from the database.
 exports.findAll = (req, res) => {
     const user = req.query.user_id;
-    var condition = user ? { user: { [Op.like]: `%${user}%` } } : null;
+    var condition = user ? {user: {[Op.like]: `%${user}%`}} : null;
 
-    User.findAll({ where: condition })
+    User.findAll({where: condition})
         .then(data => {
             res.send(data);
         })
@@ -69,7 +69,7 @@ exports.update = (req, res) => {
     const id = req.params.id;
 
     User.update(req.body, {
-        where: { id: id }
+        where: {id: id}
     })
         .then(num => {
             if (num === 1) {
@@ -94,7 +94,7 @@ exports.delete = (req, res) => {
     const id = req.params.id;
 
     User.destroy({
-        where: { id: id }
+        where: {id: id}
     })
         .then(num => {
             if (num == 1) {
@@ -121,7 +121,7 @@ exports.deleteAll = (req, res) => {
         truncate: false
     })
         .then(nums => {
-            res.send({ message: `${nums} Users were deleted successfully!` });
+            res.send({message: `${nums} Users were deleted successfully!`});
         })
         .catch(err => {
             res.status(500).send({
@@ -131,7 +131,7 @@ exports.deleteAll = (req, res) => {
         });
 };
 
-exports.findByLogin = (req, res)=>{
+exports.findByLogin = (req, res) => {
     const uname = req.params.uname;
     const pass = req.params.psswd;
 
@@ -141,17 +141,17 @@ exports.findByLogin = (req, res)=>{
             psswd: pass
         }
     })
-            .then(data => {
-                if(data.isEmpty()) res.status(500).send({
-                    message: "Error retrieving User with name=" + uname
-                });
-                else res.status(200).send(data);
-            })
-            .catch(err => {
-                res.status(500).send({
-                    message: "Error retrieving User with name=" + uname
-                });
+        .then(data => {
+            if (data.isEmpty()) res.status(500).send({
+                message: "Error retrieving User with name=" + uname
             });
+            else res.status(200).send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error retrieving User with name=" + uname
+            });
+        });
 
 
 };

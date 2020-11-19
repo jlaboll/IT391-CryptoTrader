@@ -32,8 +32,8 @@ export default class LoginForm extends Component {
                 if (response.status === 500) {
                     this.setState({message: "Username or Password incorrect."});
                 }
-                    this.setState({message: response.data.uname});
-
+                this.setState({message: response.data.uname});
+                document.getElementById('Application').setState({uid: user})
             })
             .then(() => {
                 this.setState({isLoggingIn: false})

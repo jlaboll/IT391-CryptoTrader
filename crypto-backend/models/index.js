@@ -15,7 +15,7 @@ const sqlize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
     }
 });
 
-async function testConnection(){
+async function testConnection() {
     try {
         await sqlize.authenticate();
         console.log('Connection has been established successfully.');
@@ -23,6 +23,7 @@ async function testConnection(){
         console.error('Unable to connect to the database:', error);
     }
 }
+
 testConnection();
 const db = {}
 db.Sequelize = Sequelize;
@@ -31,9 +32,9 @@ db.coin = _coin(sqlize, Sequelize);
 db.user = _user(sqlize, Sequelize);
 db.wallet = _wallet(sqlize, Sequelize);
 
-db.coin.belongsTo(db.wallet, { foreignKey: "wallid"});
-db.wallet.hasMany(db.coin, { foreignKey: "wallid"});
-db.wallet.belongsTo(db.user, { foreignKey: "user_id"});
-db.user.hasMany(db.wallet, { foreignKey: "user_id"});
+db.coin.belongsTo(db.wallet, {foreignKey: "wallid"});
+db.wallet.hasMany(db.coin, {foreignKey: "wallid"});
+db.wallet.belongsTo(db.user, {foreignKey: "user_id"});
+db.user.hasMany(db.wallet, {foreignKey: "user_id"});
 
 module.exports = db;

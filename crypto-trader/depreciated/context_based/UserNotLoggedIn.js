@@ -3,7 +3,7 @@ import {userContext} from "./userContext";
 import React from "react";
 
 
-export function UserNotLoggedIn(){
+export function UserNotLoggedIn() {
     return (
         <Container>
             <userContext.Provider value={value}>

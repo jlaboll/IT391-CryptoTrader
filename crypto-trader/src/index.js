@@ -1,29 +1,53 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import {Provider} from 'react-redux';
+import {applyMiddleware, compose, createStore} from 'redux';
+import {Route} from 'react-router';
+import reduxThunk from 'redux-thunk';
+import {AUTHENTICATE_THE_USER} from './actions/types';
+import RequireAuth from './components/auth/require_auth';
+import {profile} from './reducers/profile';
+import {NavigationBar} from "./components/NavigationBar";
+import {StyledSwitch} from "./resources/Styles";
+import {Home} from "./routes/Home";
+import {About} from "./routes/About";
+import {LiveTrading} from "./routes/LiveTrading";
+import {Login} from "./routes/Login";
+import SignUp from "./routes/SignUp";
+import {NoMatch} from "./routes/NoMatch";
+import history from "./resources/history";
 
-// /* Redux setup */
-// import {Provider} from 'react-redux';
-// import {createStore} from 'redux';
-// import reducer from './Reducers/profile'
-//
-// const store = createStore(reducer);
-// /* End Redux setup */
+/* ...import necessary components */
 
-// const render = () =>
+const createStoreWithMiddleware = compose(applyMiddleware(reduxThunk))(createStore);
+
+const store = createStoreWithMiddleware(profile);
+
+/* ... */
+
+// Check for token and update application state if required
+const token = localStorage.getItem('token');
+if (token) {
+    store.dispatch({type: AUTHENTICATE_THE_USER});
+}
+
+/* ... */
+
+
+
 ReactDOM.render(
-    <React.StrictMode>
-        {/*<Provider store={store} id = "store">*/}
-            <App/>
-       {/*</Provider>*/}
-    </React.StrictMode>,
+    <Provider store={store}>
+        <NavigationBar/>
+        <StyledSwitch history={history}>
+            <Route exact path="/" component={Home}/>
+            <Route path="/about" component={About}/>
+            <Route path="/live-trading" component={RequireAuth({LiveTrading})}/>
+            <Route path="/dashboard" component={RequireAuth()}/>
+            <Route path="/login" component={Login}/>
+            <Route path="/signup" component={SignUp}/>
+            <Route component={NoMatch}/>
+        </StyledSwitch>
+    </Provider>,
     document.getElementById('root')
-);
-// render()
-// store.subscribe(render)
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+)
+

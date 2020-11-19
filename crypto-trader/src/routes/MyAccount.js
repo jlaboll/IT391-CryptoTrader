@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default class MyAccount extends React.Component{
+export default class MyAccount extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -8,6 +8,7 @@ export default class MyAccount extends React.Component{
             uname: props.uname
         }
     }
+
     render() {
         const user = this.state.uname;
         return (

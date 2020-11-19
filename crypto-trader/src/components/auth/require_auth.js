@@ -1,4 +1,4 @@
-import {GET_USER, GET_WALLET, SIGN_IN, SIGN_OUT} from '../Constants/State_Information'
+import {GET_USER, GET_WALLET, SIGN_IN, SIGN_OUT} from '../../actions/types'
 import {combineReducers} from 'redux'
 
 const initialState =

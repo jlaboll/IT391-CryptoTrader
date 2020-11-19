@@ -1,10 +1,8 @@
 import React from 'react';
-import {Link, withRouter} from "react-router-dom";
 import {Container} from "react-bootstrap";
 import {BsHouseFill, BsInfoCircleFill, BsPencilSquare, BsPersonFill} from "react-icons/all";
-import {StyledSideNav} from "../src/resources/Styles";
 
-class Page_Routing extends React.Component{
+class Page_Routing extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -43,6 +41,7 @@ class Page_Routing extends React.Component{
             ]
         }
     }
+
     componentDidMount() {
         const header = document.getElementById('navbar-wrapper').clientHeight;
         this.setState({
@@ -50,7 +49,7 @@ class Page_Routing extends React.Component{
         });
     }
 
-    changeFocus = (path) =>{
+    changeFocus = (path) => {
         this.setState({activePath: path});
     }
 

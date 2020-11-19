@@ -1,4 +1,4 @@
-import http from "../http-common";
+import http from "../resources/http-common";
 
 const getAllCoin = () => {
     return http.get("/coin");

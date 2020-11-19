@@ -1,5 +1,3 @@
-
-
 module.exports = (sequelize, Sequelize) => {
     const attributes = {
         wallid: {
@@ -11,7 +9,7 @@ module.exports = (sequelize, Sequelize) => {
             field: "wallid",
             unique: "wallid"
         },
-        wall_name:{
+        wall_name: {
             type: Sequelize.STRING(128),
             allowNull: false,
             comment: null

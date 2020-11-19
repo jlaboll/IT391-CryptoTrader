@@ -14,12 +14,12 @@ class CryptoHeader extends React.Component {
                     <Navbar.Brand href={'/'}>
                         <text className='Title'>Practice-Crypto</text>
                     </Navbar.Brand>
-                        <AccountBox/>
-                        <Navbar.Toggle id='navbar-collapse' aria-controls="basic-navbar-nav"/>
+                    <AccountBox/>
+                    <Navbar.Toggle id='navbar-collapse' aria-controls="basic-navbar-nav"/>
 
-                        <Navbar.Collapse id="basic-navbar-nav">
-                            <Sidebar/>
-                        </Navbar.Collapse>
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Sidebar/>
+                    </Navbar.Collapse>
 
                 </Navbar>
             </CustomBar>

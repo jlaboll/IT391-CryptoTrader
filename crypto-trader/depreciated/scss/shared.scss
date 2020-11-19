@@ -1,4 +1,3 @@
-
 $theme-colors: (
         "highlight": #CCB114,
         "second": #153243,
@@ -10,4 +9,5 @@ $theme-colors: (
 @function theme-color($key: "primary") {
   @return map-get($theme-colors, $key);
 }
+
 @import "../../node_modules/bootstrap/scss/bootstrap";
