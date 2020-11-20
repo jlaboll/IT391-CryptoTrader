@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {ActivityIndicator, ScrollView, Text, TextInput, View} from 'react-native';
 import Button from '@bit/nexxtway.react-rainbow.button'
-import {findByLoginUser} from "../src/services/User_Service"
+import {findByLoginUser} from "./services/User_Service"
 import {TextBubble} from "../src/resources/Styles";
 
 const css = {margin: 5, background: '#CCB114', color: '#284B63'}

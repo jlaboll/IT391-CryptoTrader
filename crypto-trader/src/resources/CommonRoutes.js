@@ -37,7 +37,7 @@ items = [
         id: 'log_out_item_clickable',
         as: <BsXOctagonFill/>,
         key: 5
-    },
+    }
 // { //Not being used, as this is an error page.
 //     path: '/NoMatch',
 //     name: 'No Match',

@@ -8,8 +8,8 @@ import { Home } from '@/home';
 import { Profile } from '@/profile';
 import { Admin } from '@/admin';
 import { Account } from '@/account';
-import {LiveTrading} from "../trading/LiveTrading";
 import {About} from "../about/About";
+import {LiveTrading} from "../../depreciated/LiveTrading";
 
 function App() {
     const { pathname } = useLocation();  

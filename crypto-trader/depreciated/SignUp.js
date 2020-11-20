@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {ActivityIndicator, ScrollView, Text, TextInput, View} from 'react-native';
 import {TextBubble} from "../src/resources/Styles";
 import Button from "@bit/nexxtway.react-rainbow.button";
-import {createUser} from "../src/services/User_Service";
+import {createUser} from "./services/User_Service";
 
 const css = {margin: 5, background: '#CCB114', color: '#284B63'}
 

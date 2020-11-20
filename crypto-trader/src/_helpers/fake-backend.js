@@ -64,7 +64,6 @@ export function configureFakeBackend() {
                 return ok({
                     id: user.id,
                     email: user.email,
-                    title: user.title,
                     firstName: user.firstName,
                     lastName: user.lastName,
                     role: user.role,
@@ -89,7 +88,6 @@ export function configureFakeBackend() {
                 return ok({
                     id: user.id,
                     email: user.email,
-                    title: user.title,
                     firstName: user.firstName,
                     lastName: user.lastName,
                     role: user.role,
@@ -293,7 +291,6 @@ export function configureFakeBackend() {
                 return ok({
                     id: user.id,
                     email: user.email,
-                    title: user.title,
                     firstName: user.firstName,
                     lastName: user.lastName,
                     role: user.role

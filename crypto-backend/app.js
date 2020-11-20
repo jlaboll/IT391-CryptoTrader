@@ -11,8 +11,8 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
 });
 
-const db = require("./models");
-require("./routes/user_routes")(app);
-require("./routes/wallet_routes")(app);
-require("./routes/coin_routes")(app);
+const db = require("./depreciated/models");
+require("./depreciated/routes/user_routes")(app);
+require("./depreciated/routes/wallet_routes")(app);
+require("./depreciated/routes/coin_routes")(app);
 db.sequelize.sync();
