@@ -9,7 +9,7 @@ import { Profile } from '@/profile';
 import { Admin } from '@/admin';
 import { Account } from '@/account';
 import {About} from "../about/About";
-import {LiveTrading} from "../../depreciated/LiveTrading";
+import {LiveTrading} from "../trading/LiveTrading";
 
 function App() {
     const { pathname } = useLocation();  

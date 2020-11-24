@@ -17,11 +17,17 @@ async function initialize() {
 
     // init models and add them to the exported db object
     db.Account = require('../accounts/account.model')(sequelize);
+    db.Wallet = require('../wallets/wallet.model')(sequelize);
+    db.Coin = require('../coins/coin.model')(sequelize);
     db.RefreshToken = require('../accounts/refresh-token.model')(sequelize);
 
     // define relationships
     db.Account.hasMany(db.RefreshToken, { onDelete: 'CASCADE' });
     db.RefreshToken.belongsTo(db.Account);
+    db.Account.hasMany(db.Wallet, {onDelete: 'CASCADE'});
+    db.Wallet.belongsTo(db.Account, {foreignKey: 'userId'});
+    db.Wallet.hasMany(db.Coin, {onDelete: 'CASCADE'});
+    db.Coin.belongsTo(db.Wallet, {foreignKey: 'walledId'});
     
     // sync all models with database
     await sequelize.sync();

@@ -12,6 +12,7 @@
     },
     "dependencies": {
         "@bit/nexxtway.react-rainbow.button": "^1.10.0",
+        "@bit/react-bootstrap.react-bootstrap.dropdown": "^1.0.0",
         "axios": "^0.21.0",
         "file-loader": "^6.2.0",
         "formik": "^2.1.4",

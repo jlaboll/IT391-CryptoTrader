@@ -1,13 +1,18 @@
 import React, {Component} from 'react';
 import NumberFormat from "react-number-format";
-
+import { accountService } from '@/_services';
 
 export default class Wallet extends Component {
-    state = {
-        coin: '',
-        count: 0
-
-    };
+    constructor(props) {
+        super(props);
+        this.state =
+            {
+                wallet: props.wallet_id,
+                coin: props.coin,
+                count: ,
+                wallet_id: -1
+            }
+    }
 
     promptAmt() {
         let amount = prompt("How much?", 1);
