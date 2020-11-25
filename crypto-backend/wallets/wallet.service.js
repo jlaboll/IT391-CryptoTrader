@@ -12,8 +12,10 @@ module.exports = {
 };
 
 
-async function getAll() {
-    const wallets = await db.Wallet.findAll();
+async function getAll(params) {
+    const wallets = await db.Wallet.findAll({where:{
+        userId: params.id
+        }});
     return wallets.map(x => basicDetails(x));
 }
 

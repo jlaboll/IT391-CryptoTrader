@@ -4,6 +4,7 @@ import axios from 'axios';
 import Wallet from '../_components/Wallet'
 import Dropdown from '@bit/react-bootstrap.react-bootstrap.dropdown';
 import { accountService } from '@/_services';
+import {walletService} from "../_services/wallet.service";
 
 const Wrapper = styled.div`
   margin-top: 1em;
@@ -15,11 +16,12 @@ export class LiveTrading extends React.Component {
     constructor(props) {
         super(props)
         this.state={
-            wallets: accountService.userValue,
+            wallets: walletService.getAllById(accountService.userValue),
             page: 0,
             allKeys: {},
             cryptos: [],
-            pgLgth: 10
+            pgLgth: 10,
+            walletId: -1
         };
     }
 
@@ -68,16 +70,16 @@ export class LiveTrading extends React.Component {
                         Select Wallet
                     </Dropdown.Toggle>
 
-                    <Dropdown.Menu>
-                        {Object.keys(this.state.user).map(key) => (
-
-                            )}
+                    <Dropdown.Menu >
+                        {Object.keys(this.state.wallets).map((key) => (
+                            <Dropdown.Item key={key} onSelect={this.setState({walletId: this.state.wallets[key].id})}>{this.state.wallets[key].walletName}</Dropdown.Item>
+                            ))}
                     </Dropdown.Menu>
                 </Dropdown>
                 <h1>Coin Trading</h1>
                 <div>
                     {Object.keys(this.state.cryptos).map((key) => (
-                        <Wallet key={key} coin={key} coinValue={this.state.cryptos[key].USD} coinName={this.state.allKeys[key].CoinName}/>
+                        <Wallet key={key} coin={key} coinValue={this.state.cryptos[key].USD} coinName={this.state.allKeys[key].CoinName} wallet={this.state.walletId}/>
                     ))}
                 </div>
             </div>

@@ -1,16 +1,17 @@
 import React, {Component} from 'react';
 import NumberFormat from "react-number-format";
 import { accountService } from '@/_services';
+import {walletService} from "../_services/wallet.service";
 
 export default class Wallet extends Component {
     constructor(props) {
         super(props);
         this.state =
             {
-                wallet: props.wallet_id,
+                walletId: props.walletId,
                 coin: props.coin,
-                count: ,
-                wallet_id: -1
+                coinName: props.coinName,
+                count: walletService.getCoinByKey(props.coin)
             }
     }
 
