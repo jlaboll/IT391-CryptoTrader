@@ -8,10 +8,13 @@ export default class Wallet extends Component {
         super(props);
         this.state =
             {
-                walletId: props.walletId,
+                // walletId: props.walletId,
                 coin: props.coin,
                 coinName: props.coinName,
-                count: walletService.getCoinByKey(props.coin)
+                count: 0,
+                coinValue: props.coinValue
+
+                //count: walletService.getCoinByKey(props.coin)
             }
     }
 
@@ -51,7 +54,9 @@ export default class Wallet extends Component {
         return (
             <div className="container">
                 <div className="row border-bottom mb-2 pt-2 ">
-                    <div className="col-sm"><span>{this.props.coin} </span></div>
+                    <div className="col-sm"><span>{this.state.coin} </span></div>
+                    <div className="col-sm"><span>{this.state.coinName} </span></div>
+                    <div className="col-sm"><span>{<NumberFormat value={this.state.coinValue} displayType={'text'} thousandSeparator={true} prefix={'$'}/>} </span></div>
                     <div className="col-sm d-flex justify-content-center">
                         <span>{this.displayCount()} / {this.displayAmount()}</span></div>
                     <div className="col-sm mb-2">
@@ -69,7 +74,7 @@ export default class Wallet extends Component {
 
     calculateAmount() {
         // coinValue * count
-        let coinVal = parseFloat(this.props.coinValue);
+        let coinVal = parseFloat(this.state.coinValue);
         let count = parseFloat(this.state.count);
         let amount = coinVal * count;
         amount = amount.toFixed(2);

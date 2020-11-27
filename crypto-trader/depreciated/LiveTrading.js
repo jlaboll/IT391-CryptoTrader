@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
-import Wallet from '../src/_components/Wallet'
+import Wallet from '../src/wallet/Wallet'
 
 
 export function LiveTrading(){

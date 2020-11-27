@@ -11,6 +11,7 @@
         "start": "webpack-dev-server --open"
     },
     "dependencies": {
+        "@bit/lekanmedia.shared-ui.search-bar": "^1.0.9",
         "@bit/nexxtway.react-rainbow.button": "^1.10.0",
         "@bit/react-bootstrap.react-bootstrap.dropdown": "^1.0.0",
         "axios": "^0.21.0",

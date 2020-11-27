@@ -1,4 +1,4 @@
-﻿import validateRequest from "../_middleware/validate-request";
+﻿const validateRequest = require('_middleware/validate-request');
 
 const express = require('express');
 const router = express.Router();
