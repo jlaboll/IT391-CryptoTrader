@@ -125,14 +125,14 @@ export class LiveTrading extends React.Component {
                         <div className="col-sm"><span>Crypto ID </span></div>
                         <div className="col-sm"><span>Currency Name </span></div>
                         <div className="col-sm"><span>Cost per Unit </span></div>
-                        <div className="col-sm d-flex justify-content-center"><span>Owned Amount / Owned Value</span>
+                        <div className="col-sm d-flex justify-content-center"><span>Amount / Value</span>
                         </div>
                         <div style={{padding: '10px'}}>
                             <button style={{
                                 hover: {boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)'},
                                 borderRadius: '8px',
                                 font: 'inherit'
-                            }} disabled>Buy Button
+                            }} disabled>Buy
                             </button>
                         </div>
                         <div style={{padding: '10px'}}>
@@ -140,7 +140,7 @@ export class LiveTrading extends React.Component {
                                 hover: {boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)'},
                                 borderRadius: '8px',
                                 font: 'inherit'
-                            }} disabled>Sell Button
+                            }} disabled>Sell
                             </button>
                         </div>
                     </div>
