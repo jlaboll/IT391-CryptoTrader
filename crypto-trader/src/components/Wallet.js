@@ -34,9 +34,10 @@ export default class Wallet extends Component {
         // console.log('props', this.props);
         return(
             <div className="container">
+                {this.props.children}
                 <div className="row border-bottom mb-2 pt-2 ">
-                    <div className="col-sm"><span>{this.props.coin} </span></div>
-                    <div className="col-sm d-flex justify-content-center"><span>{this.displayCount()} / {this.displayAmount()}</span></div>
+                    <div className="col-sm"><span> {this.displayCount()} </span></div>
+                    <div className="col-sm d-flex justify-content-center"><span> {this.displayAmount()}</span></div>
                     <div className="col-sm mb-2">
                         <button className="btn btn-outline-dark float-right" onClick={this.handleBuy}>Buy</button>
                         <button className="btn btn-outline-dark float-right" onClick={this.handleSell}>Sell</button>
