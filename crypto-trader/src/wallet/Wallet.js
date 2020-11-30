@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Button} from 'react-bootstrap';
 import NumberFormat from "react-number-format";
 import { accountService } from '@/_services';
 import {walletService} from "../_services/wallet.service";
@@ -59,10 +60,18 @@ export default class Wallet extends Component {
                     <div className="col-sm"><span>{<NumberFormat value={this.state.coinValue} displayType={'text'} thousandSeparator={true} prefix={'$'}/>} </span></div>
                     <div className="col-sm d-flex justify-content-center">
                         <span>{this.displayCount()} / {this.displayAmount()}</span></div>
-                    <div className="col-sm mb-2">
-                        <button className="btn btn-outline-dark float-right" onClick={this.handleBuy}>Buy</button>
-                        <button className="btn btn-outline-dark float-right" onClick={this.handleSell}>Sell</button>
-                    </div>
+                    <div style={{padding: '10px'}}>
+                        <button style={{
+                            hover: {boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)'},
+                            borderRadius: '8px',
+                            font: 'inherit'
+                        }} onClick={this.handleBuy}>Buy</button></div>
+                    <div style={{padding: '10px'}}>
+                        <button style={{
+                            hover: {boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)'},
+                            borderRadius: '8px',
+                            font: 'inherit'
+                        }} onClick={this.handleSell}>Sell</button></div>
                 </div>
             </div>
         );

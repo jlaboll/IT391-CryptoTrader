@@ -10,6 +10,18 @@ module.exports = {
                 loader: 'babel-loader'
             },
             {
+                test: /\.css$/i,
+                use: ["style-loader", "css-loader"],
+            },
+            {
+                test: /\.(woff2?|eot|ttf|otf)$/,
+                loader: 'file-loader',
+                options: {
+                    limit: 10000,
+                    name: '[name].[hash:7].[ext]'
+                }
+            },
+            {
                 test: /\.less$/,
                 use: [
                     { loader: 'style-loader' },

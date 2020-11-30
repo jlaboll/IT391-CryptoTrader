@@ -1,12 +1,15 @@
 import React from 'react';
+import Dropdown from '@bit/react-bootstrap.react-bootstrap.dropdown';
 import axios from 'axios';
 import Wallet from '../wallet/Wallet'
-import { accountService } from '@/_services';
-import {walletService} from "../_services/wallet.service";
+import {accountService} from '@/_services';
+import {walletService} from "@/_services/wallet.service";
+import SearchBar from "@bit/lekanmedia.shared-ui.search-bar";
+
 export class LiveTrading extends React.Component {
     constructor(props) {
         super(props)
-        this.state={
+        this.state = {
             wallets: walletService.getAllById(accountService.userValue),
             page: 0,
             allKeys: {},
@@ -15,6 +18,12 @@ export class LiveTrading extends React.Component {
             pgLgth: 10,
             walletId: -1
         };
+        this.buildReqURI = this.buildReqURI.bind(this);
+        this.nextPage = this.nextPage.bind(this);
+        this.prevPage = this.prevPage.bind(this);
+        this.reloadPage = this.reloadPage.bind(this);
+        this.onCancel = this.onCancel.bind(this);
+        this.search = this.search.bind(this);
     }
 
     componentDidMount() {
@@ -29,32 +38,34 @@ export class LiveTrading extends React.Component {
                         const cryptos = res.data;
                         console.log(cryptos);
                         this.setState({cryptos: cryptos});
-                    }))})
+                    }))
+            })
     }
 
-    buildReqURI(){
+    buildReqURI() {
         let uri = 'https://min-api.cryptocompare.com/data/pricemulti?fsyms=';
-        for(let i = this.state.pgLgth * this.state.page; i < (this.state.pgLgth * this.state.page) + 10; i++){
+        for (let i = this.state.pgLgth * this.state.page; i < (this.state.pgLgth * this.state.page) + 10; i++) {
             uri += this.state.idList[i];
             uri += ',';
         }
-        uri = uri.substr(0, uri.length -1);
+        uri = uri.substr(0, uri.length - 1);
         return (uri + '&tsyms=USD').toString();
     }
 
-    nextPage(){
+    nextPage() {
         this.setState({page: this.state.page + 1});
-        setTimeout(() => this.render());
+        setTimeout(() => this.reloadPage());
     }
 
-    prevPage(){
-        if(this.state.page > 0){
+    prevPage() {
+        if (this.state.page > 0) {
             this.setState({page: this.state.page - 1});
+            setTimeout(() => this.reloadPage());
         }
-        setTimeout(() => this.render());
+
     }
 
-    reloadPage(){
+    reloadPage() {
         axios.get(this.buildReqURI())
             .then(res => {
                 const cryptos = res.data;
@@ -65,20 +76,20 @@ export class LiveTrading extends React.Component {
 
     }
 
-    onCancel(){
+    onCancel = () => {
         this.reloadPage();
     }
 
-    search(props){
+    search = (props) => {
         let searchTerm = props;
         let res = getObjects(this.state.allKeys, searchTerm, searchTerm);
 
         let uri = 'https://min-api.cryptocompare.com/data/pricemulti?fsyms=';
-        for(let i = 0; i < 10 && i<res.length; i++){
+        for (let i = 0; i < 10 && i < res.length; i++) {
             uri += res[i];
             uri += ',';
         }
-        uri = uri.substr(0, uri.length -1);
+        uri = uri.substr(0, uri.length - 1);
         uri = (uri + '&tsyms=USD').toString();
         axios.get(uri)
             .then(res => {
@@ -89,42 +100,70 @@ export class LiveTrading extends React.Component {
         setTimeout(() => this.render());
     }
 
-    render(){
+    render() {
 
         return (
             <div className="container">
-                <div>
+                <div className="col flex-shrink-1" style={{padding: '10px'}}>
                     <h1>Coin Trading</h1>
                     <SearchBar placeholder="Search Coins" onSearch={this.search} cancelSearch={this.onCancel}/>
                 </div>
 
+                <Dropdown style={{padding: '10px'}}>
+                    <Dropdown.Toggle id="dropdown-item-button">
+                        Select Wallet
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                        {Object.keys(this.state.wallets).map((key) => (
+                            <Dropdown.Item key={key}
+                                           onSelect={this.setState({walletId: this.state.wallets[key].id})}>{this.state.wallets[key].walletName}</Dropdown.Item>
+                        ))}
+                    </Dropdown.Menu>
+                </Dropdown>
                 <div className="container">
-                    <container style={{display:'flex', borderStyle: 'none none solid none'}}>
+                    <div className="row border-bottom">
                         <div className="col-sm"><span>Crypto ID </span></div>
                         <div className="col-sm"><span>Currency Name </span></div>
                         <div className="col-sm"><span>Cost per Unit </span></div>
-                        <div className="col-sm d-flex justify-content-center">
-                            <span>Owned Amount / Owned Value</span></div>
-                        <div className="col-sm mb-2">
-                            <button className="btn btn-outline-dark float-right" disabled>Buy Button</button>
-                            <button className="btn btn-outline-dark float-right" disabled>Sell Button</button>
+                        <div className="col-sm d-flex justify-content-center"><span>Owned Amount / Owned Value</span>
                         </div>
-                    </container>
+                        <div style={{padding: '10px'}}>
+                            <button style={{
+                                hover: {boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)'},
+                                borderRadius: '8px',
+                                font: 'inherit'
+                            }} disabled>Buy Button
+                            </button>
+                        </div>
+                        <div style={{padding: '10px'}}>
+                            <button style={{
+                                hover: {boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)'},
+                                borderRadius: '8px',
+                                font: 'inherit'
+                            }} disabled>Sell Button
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div>
                     {Object.keys(this.state.cryptos).map((key) => (
-                        <Wallet key={key} coin={key} coinValue={this.state.cryptos[key].USD} coinName={this.state.allKeys[key].CoinName} />
+                        <Wallet key={key} coin={key} coinValue={this.state.cryptos[key].USD}
+                                coinName={this.state.allKeys[key].CoinName}/>
                     ))}
                 </div>
                 <div>
-                    <button onClick={this.prevPage()} disabled={this.state.page === 0}>Prev</button>
-                    <button onClick={this.nextPage()} disabled={this.state.page * this.state.pgLgth >= this.state.idList.length}>Next</button>
+                    <button style={{padding: '10px'}} onClick={this.prevPage} disabled={this.state.page === 0}>Prev
+                    </button>
+                    <button onClick={this.nextPage}
+                            disabled={this.state.page * this.state.pgLgth >= this.state.idList.length}>Next
+                    </button>
                 </div>
             </div>
 
         );
     }
 }
+
 //return an array of values that match on a certain key
 //return an array of keys that match on a certain value
 //wallet={this.state.walletId}
@@ -151,9 +190,9 @@ function getObjects(obj, key, val) {
             //if key matches and value matches or if key matches and value is not passed (eliminating the case where key matches but passed value does not)
         if (i == key && obj[i] == val || i == key && val == '') { //
             objects.push(obj);
-        } else if (obj[i] == val && key == ''){
+        } else if (obj[i] == val && key == '') {
             //only add if the object is not already in the array
-            if (objects.lastIndexOf(obj) == -1){
+            if (objects.lastIndexOf(obj) == -1) {
                 objects.push(obj);
             }
         }
