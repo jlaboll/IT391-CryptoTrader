@@ -13,9 +13,10 @@ export class LiveTrading extends React.Component {
     constructor(props) {
         super(props)
         this.state={
-            coinList: [],
-            cryptos: [],
-            money: 10000
+            coinList: [],  //list of every single crypto currency populated by api call
+            userCoins: ["BTC","ETH","LTC","XMR","DOGE"], //coins that the user has chosen to have wallets for
+            cryptos: [],   //the list/object that the wallet components are mapped from. Populated by api call
+            money: 10000   //dollars, moolah, skrilla, dosh
         };
 
         //axios.get the all coins api list and store in state
@@ -30,7 +31,8 @@ export class LiveTrading extends React.Component {
     componentDidMount() {
 
         //Populate a list with coin/price data objects from api
-        axios.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC,XMR,DOGE&tsyms=USD')
+        var apiCall = this.buildAPICall();
+        axios.get(apiCall)
             .then(res => {
                 const cryptos = res.data;
                 console.log(cryptos);
@@ -38,10 +40,36 @@ export class LiveTrading extends React.Component {
             });
     }
 
-    handleDelete = () => {
-        console.log("Deletin this bih");
+    componentDidUpdate(prevState){
+        if(this.state.userCoins !== prevState.userCoins){
+            var apiCall = this.buildAPICall();
+            axios.get(apiCall)
+                .then(res => {
+                    const cryptos = res.data;
+                    console.log(cryptos);
+                    this.setState({cryptos: cryptos});
+                });
+        }
     }
 
+    handleDelete = (walletKey) => {
+        console.log("Deleting wallet: ", walletKey);
+        const userCoins = this.state.userCoins.filter(c => c !== walletKey);
+        this.setState({userCoins: userCoins});
+        this.forceUpdate();
+    }
+
+    buildAPICall = () => {
+        const firstChunk = 'https://min-api.cryptocompare.com/data/pricemulti?fsyms=';
+        var [first, ...rest] = this.state.userCoins;
+        let secondChunk = first;
+        console.log(rest);
+        rest.forEach(el => secondChunk = secondChunk.concat(",",el));
+        console.log(secondChunk);
+        let apiCall = firstChunk.concat("",secondChunk);
+        apiCall=apiCall.concat("","&tsyms=USD");
+        return apiCall;
+    }
     render(){
 
         return (

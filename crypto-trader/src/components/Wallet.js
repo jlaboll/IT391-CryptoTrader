@@ -38,7 +38,7 @@ export default class Wallet extends Component {
                     <div className="col-sm"><span> {this.displayCount()} </span></div>
                     <div className="col-sm d-flex justify-content-center"><span> {this.displayAmount()}</span></div>
                     <div className="col-sm mb-2">
-                        <button className="btn btn-danger float-right ml-2" onClick={this.props.onDelete}>X</button>
+                        <button className="btn btn-danger float-right ml-2" onClick={() => this.props.onDelete(this.props.coin)}>X</button>
                         <button className="btn btn-outline-dark float-right" onClick={this.handleBuy}>Buy</button>
                         <button className="btn btn-outline-dark float-right" onClick={this.handleSell}>Sell</button>
                     </div>
@@ -46,6 +46,7 @@ export default class Wallet extends Component {
             </div>
         );
     }
+// For delete button's onClick{}
 
     displayCount(){
         return this.state.count;
