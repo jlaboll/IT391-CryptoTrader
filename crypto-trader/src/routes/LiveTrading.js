@@ -1,22 +1,28 @@
 import React from 'react';
 import axios from 'axios';
-import Wallet from '../components/Wallet'
+import Wallet from '../components/Wallet';
+import AddWalletModal from '../components/AddWalletModal';
 
-//TODO: Allow for deleting wallets (Hook up button)
+
 //TODO: Allow for creation of new wallets (hook up button)
+    //get button to pop up a modal
+    //get modal to properly display the external search bar
+    //take string from search bar and add the (key) to userCoins
+    //forceUpdate if necessary
 //TODO: fix decimal precision issue
-//TODO: Dynamically run API call to populate cryptos
 //TODO: Make Selling add to money and not allow negatives in either input or result
 //TODO: Make Buying remove from money and not allow purchase if too poor
 
 export class LiveTrading extends React.Component {
+
     constructor(props) {
         super(props)
         this.state={
             coinList: [],  //list of every single crypto currency populated by api call
             userCoins: ["BTC","ETH","LTC","XMR","DOGE"], //coins that the user has chosen to have wallets for
             cryptos: [],   //the list/object that the wallet components are mapped from. Populated by api call
-            money: 10000   //dollars, moolah, skrilla, dosh
+            money: 10000,   //dollars, moolah, skrilla, dosh
+            modalVisibile: false
         };
 
         //axios.get the all coins api list and store in state
@@ -52,6 +58,8 @@ export class LiveTrading extends React.Component {
         }
     }
 
+
+
     handleDelete = (walletKey) => {
         console.log("Deleting wallet: ", walletKey);
         const userCoins = this.state.userCoins.filter(c => c !== walletKey);
@@ -70,14 +78,17 @@ export class LiveTrading extends React.Component {
         apiCall=apiCall.concat("","&tsyms=USD");
         return apiCall;
     }
-    render(){
 
+    render(){
+    let addModalClose = () => this.setState({modalVisibile:false});
         return (
             <div className="container">
                 <div className="row">
                     <div className="col-sm"><h1>Coin Trading</h1></div>
                     <div className="col-sm"><h1 className='text-success'> Money: ${this.state.money} </h1></div>
-                    <div className="col-sm"><button className="btn btn-outline-dark float-right mt-2">Add New Wallet</button></div>
+                    <div className="col-sm"><button className="btn btn-outline-dark float-right mt-2" onClick={()=>this.setState({modalVisibile: true})}>Add New Wallet</button>
+                        <AddWalletModal show={this.state.modalVisibile} onHide={addModalClose}/>
+                    </div>
                 </div>
 
                 <div>
@@ -87,6 +98,7 @@ export class LiveTrading extends React.Component {
                         </Wallet>
                     ))}
                 </div>
+
             </div>
 
         );
