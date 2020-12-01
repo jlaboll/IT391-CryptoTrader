@@ -74,6 +74,6 @@ function _delete(req, res, next) {
     }
 
     walletService.delete(req.params.id)
-        .then(() => res.json({ message: 'Wallet deleted successfully' }))
+        .then(() => res.json({ message: 'Coin deleted successfully' }))
         .catch(next);
 }

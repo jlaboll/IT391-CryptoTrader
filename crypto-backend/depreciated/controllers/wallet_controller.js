@@ -2,7 +2,7 @@ const db = require("../models");
 const Wallet = db.wallet;
 const Op = db.Sequelize.Op;
 
-// Create and Save a new Wallet
+// Create and Save a new Coin
 exports.create = (req, res) => {
     // Validate request
     if (!req.body.title) {
@@ -12,7 +12,7 @@ exports.create = (req, res) => {
         return;
     }
 
-    // Create a Wallet
+    // Create a Coin
     const wallet = {
         wallid: req.body.wallid,
         wall_name: req.body.wall_name,
@@ -20,7 +20,7 @@ exports.create = (req, res) => {
         user_id: req.body.user_id
     };
 
-    // Save Wallet in the database
+    // Save Coin in the database
     Wallet.create(wallet)
         .then(data => {
             res.send(data);
@@ -28,7 +28,7 @@ exports.create = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while creating the Wallet."
+                    err.message || "Some error occurred while creating the Coin."
             });
         });
 };
@@ -50,7 +50,7 @@ exports.findAll = (req, res) => {
         });
 };
 
-// Find a single Wallet with an id
+// Find a single Coin with an id
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
@@ -60,12 +60,12 @@ exports.findOne = (req, res) => {
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error retrieving Wallet with id=" + id
+                message: "Error retrieving Coin with id=" + id
             });
         });
 };
 
-// Update a Wallet by the id in the request
+// Update a Coin by the id in the request
 exports.update = (req, res) => {
     const id = req.params.id;
 
@@ -90,7 +90,7 @@ exports.update = (req, res) => {
         });
 };
 
-// Delete a Wallet with the specified id in the request
+// Delete a Coin with the specified id in the request
 exports.delete = (req, res) => {
     const id = req.params.id;
 
@@ -100,7 +100,7 @@ exports.delete = (req, res) => {
         .then(num => {
             if (num == 1) {
                 res.send({
-                    message: "Wallet was deleted successfully!"
+                    message: "Coin was deleted successfully!"
                 });
             } else {
                 res.send({
@@ -110,7 +110,7 @@ exports.delete = (req, res) => {
         })
         .catch(err => {
             res.status(500).send({
-                message: "Could not delete Wallet with id=" + id
+                message: "Could not delete Coin with id=" + id
             });
         });
 };
@@ -144,7 +144,7 @@ exports.findByUserId = (req, res) => {
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error retrieving Wallet with usrid=" + user_id
+                message: "Error retrieving Coin with usrid=" + user_id
             });
         });
 }

@@ -55,6 +55,6 @@ function basicDetails(wallet) {
 
 async function getWallet(id) {
     const wallet = await db.Wallet.findByPk(id);
-    if (!wallet) throw 'Wallet not found';
+    if (!wallet) throw 'Coin not found';
     return wallet;
 }

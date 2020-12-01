@@ -1,22 +1,17 @@
 import React from 'react';
-import Dropdown from '@bit/react-bootstrap.react-bootstrap.dropdown';
 import axios from 'axios';
-import Wallet from '../wallet/Wallet'
-import {accountService} from '@/_services';
-import {walletService} from "@/_services/wallet.service";
 import SearchBar from "@bit/lekanmedia.shared-ui.search-bar";
+import Coin from "@/coin_feed_search/Coin";
 
-export class LiveTrading extends React.Component {
+export class CoinFeed extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            wallets: walletService.getAllById(accountService.userValue),
             page: 0,
             allKeys: {},
             idList: [],
             cryptos: [],
-            pgLgth: 10,
-            walletId: -1
+            pgLgth: 10
         };
         this.buildReqURI = this.buildReqURI.bind(this);
         this.nextPage = this.nextPage.bind(this);
@@ -108,46 +103,16 @@ export class LiveTrading extends React.Component {
                     <h1>Coin Trading</h1>
                     <SearchBar placeholder="Search Coins" onSearch={this.search} cancelSearch={this.onCancel}/>
                 </div>
-
-                <Dropdown style={{padding: '10px'}}>
-                    <Dropdown.Toggle id="dropdown-item-button">
-                        Select Wallet
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                        {Object.keys(this.state.wallets).map((key) => (
-                            <Dropdown.Item key={key}
-                                           onSelect={this.setState({walletId: this.state.wallets[key].id})}>{this.state.wallets[key].walletName}</Dropdown.Item>
-                        ))}
-                    </Dropdown.Menu>
-                </Dropdown>
                 <div className="container">
                     <div className="row border-bottom">
                         <div className="col-sm"><span>Crypto ID </span></div>
                         <div className="col-sm"><span>Currency Name </span></div>
                         <div className="col-sm"><span>Cost per Unit </span></div>
-                        <div className="col-sm d-flex justify-content-center"><span>Amount / Value</span>
-                        </div>
-                        <div style={{padding: '10px'}}>
-                            <button style={{
-                                hover: {boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)'},
-                                borderRadius: '8px',
-                                font: 'inherit'
-                            }} disabled>Buy
-                            </button>
-                        </div>
-                        <div style={{padding: '10px'}}>
-                            <button style={{
-                                hover: {boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)'},
-                                borderRadius: '8px',
-                                font: 'inherit'
-                            }} disabled>Sell
-                            </button>
-                        </div>
                     </div>
                 </div>
                 <div>
                     {Object.keys(this.state.cryptos).map((key) => (
-                        <Wallet key={key} coin={key} coinValue={this.state.cryptos[key].USD}
+                        <Coin key={key} coin={key} coinValue={this.state.cryptos[key].USD}
                                 coinName={this.state.allKeys[key].CoinName}/>
                     ))}
                 </div>
@@ -164,21 +129,7 @@ export class LiveTrading extends React.Component {
     }
 }
 
-//return an array of values that match on a certain key
-//return an array of keys that match on a certain value
-//wallet={this.state.walletId}
 
-// <Dropdown>
-//     <Dropdown.Toggle id="dropdown-item-button">
-//         Select Coin
-//     </Dropdown.Toggle>
-//
-//     <Dropdown.Menu >
-//         {Object.keys(this.state.wallets).map((key) => (
-//             <Dropdown.Item key={key} onSelect={this.setState({walletId: this.state.wallets[key].id})}>{this.state.wallets[key].walletName}</Dropdown.Item>
-//         ))}
-//     </Dropdown.Menu>
-// </Dropdown>
 
 function getObjects(obj, key, val) {
     var objects = [];

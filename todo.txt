@@ -14,7 +14,7 @@ About:
        Add background
 
 Trading:
-        Wallet selection
+        Coin selection
        Add account header
        Live feedback on coin prices
    
