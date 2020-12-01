@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Modal, Button, Row, Col} from 'react-bootstrap';
+import {Modal, Button} from 'react-bootstrap';
+import DropdownSearch from '../components/SearchableDropdown';
 
 export default class AddWalletModal extends Component{
     constructor(props){
@@ -15,21 +16,21 @@ export default class AddWalletModal extends Component{
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
-                        Modal heading
+                        What type of coin will this wallet hold?
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <h4>Centered Modal</h4>
-                    <p>
-                        Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                        dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                        consectetur ac, vestibulum at eros.
-                    </p>
+                    <h4>Search for a coin</h4>
+                    <DropdownSearch coinList={this.props.coinList}></DropdownSearch>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={this.props.onHide}>Close</Button>
+                    <Button className="btn btn-danger" onClick={this.props.onHide}>Cancel</Button>
+                    <Button onClick={this.props.onHide}>Submit</Button>
                 </Modal.Footer>
             </Modal>
         )
     }
 }
+
+
+

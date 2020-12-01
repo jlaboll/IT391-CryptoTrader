@@ -87,7 +87,7 @@ export class LiveTrading extends React.Component {
                     <div className="col-sm"><h1>Coin Trading</h1></div>
                     <div className="col-sm"><h1 className='text-success'> Money: ${this.state.money} </h1></div>
                     <div className="col-sm"><button className="btn btn-outline-dark float-right mt-2" onClick={()=>this.setState({modalVisibile: true})}>Add New Wallet</button>
-                        <AddWalletModal show={this.state.modalVisibile} onHide={addModalClose}/>
+                        <AddWalletModal show={this.state.modalVisibile} onHide={addModalClose} coinList={this.state.coinList}/>
                     </div>
                 </div>
 
