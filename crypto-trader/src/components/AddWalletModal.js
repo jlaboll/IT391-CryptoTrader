@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Modal, Button} from 'react-bootstrap';
-import DropdownSearch from '../components/SearchableDropdown';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 export default class AddWalletModal extends Component{
     constructor(props){
@@ -21,7 +22,7 @@ export default class AddWalletModal extends Component{
                 </Modal.Header>
                 <Modal.Body>
                     <h4>Search for a coin</h4>
-                    <DropdownSearch coinList={this.props.coinList}></DropdownSearch>
+                    <Dropdown options={this.props.coinList} onChange={this._onSelect} value="Pick a coin"></Dropdown>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button className="btn btn-danger" onClick={this.props.onHide}>Cancel</Button>
