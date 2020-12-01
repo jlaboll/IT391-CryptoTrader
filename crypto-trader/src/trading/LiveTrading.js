@@ -5,6 +5,7 @@ import Wallet from '../wallet/Wallet'
 import {accountService} from '@/_services';
 import {walletService} from "@/_services/wallet.service";
 import SearchBar from "@bit/lekanmedia.shared-ui.search-bar";
+import AddWalletModal from "@/wallet/AddWalletModal";
 
 export class LiveTrading extends React.Component {
     constructor(props) {
@@ -16,7 +17,9 @@ export class LiveTrading extends React.Component {
             idList: [],
             cryptos: [],
             pgLgth: 10,
-            walletId: -1
+            walletId: -1,
+            money: 0,
+            modalVisibile: false
         };
         this.buildReqURI = this.buildReqURI.bind(this);
         this.nextPage = this.nextPage.bind(this);
@@ -24,6 +27,7 @@ export class LiveTrading extends React.Component {
         this.reloadPage = this.reloadPage.bind(this);
         this.onCancel = this.onCancel.bind(this);
         this.search = this.search.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     componentDidMount() {
@@ -40,6 +44,25 @@ export class LiveTrading extends React.Component {
                         this.setState({cryptos: cryptos});
                     }))
             })
+    }
+
+    componentDidUpdate(prevProps,prevState, snapshot){
+        if(this.state.userCoins !== prevState.userCoins){
+            var apiCall = this.buildAPICall();
+            axios.get(apiCall)
+                .then(res => {
+                    const cryptos = res.data;
+                    console.log(cryptos);
+                    this.setState({cryptos: cryptos});
+                });
+        }
+    }
+
+    handleDelete = (walletKey) => {
+        console.log("Deleting wallet: ", walletKey);
+        const userCoins = this.state.userCoins.filter(c => c !== walletKey);
+        this.setState({userCoins: userCoins});
+        this.forceUpdate();
     }
 
     buildReqURI() {
@@ -101,7 +124,7 @@ export class LiveTrading extends React.Component {
     }
 
     render() {
-
+        let addModalClose = () => this.setState({modalVisibile:false});
         return (
             <div className="container">
                 <div className="col flex-shrink-1" style={{padding: '10px'}}>
@@ -120,6 +143,12 @@ export class LiveTrading extends React.Component {
                         ))}
                     </Dropdown.Menu>
                 </Dropdown>
+                <div className="container">
+                    <div className="col-sm"><h1 className='text-success'> Money: ${this.state.money} </h1></div>
+                    <div className="col-sm"><button className="btn btn-outline-dark float-right mt-2" onClick={()=>this.setState({modalVisibile: true})}>Add New Wallet</button>
+                        <AddWalletModal show={this.state.modalVisibile} onHide={addModalClose} coinList={this.state.coinList}/>
+                    </div>
+                </div>
                 <div className="container">
                     <div className="row border-bottom">
                         <div className="col-sm"><span>Crypto ID </span></div>
@@ -164,21 +193,6 @@ export class LiveTrading extends React.Component {
     }
 }
 
-//return an array of values that match on a certain key
-//return an array of keys that match on a certain value
-//wallet={this.state.walletId}
-
-// <Dropdown>
-//     <Dropdown.Toggle id="dropdown-item-button">
-//         Select Coin
-//     </Dropdown.Toggle>
-//
-//     <Dropdown.Menu >
-//         {Object.keys(this.state.wallets).map((key) => (
-//             <Dropdown.Item key={key} onSelect={this.setState({walletId: this.state.wallets[key].id})}>{this.state.wallets[key].walletName}</Dropdown.Item>
-//         ))}
-//     </Dropdown.Menu>
-// </Dropdown>
 
 function getObjects(obj, key, val) {
     var objects = [];
