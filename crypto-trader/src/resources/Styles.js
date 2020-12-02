@@ -213,8 +213,10 @@ export const ImgCarousel = styled.div`
 `;
 
 export const AboutDiv = styled.div`
+        justify-self: center;
+  width: 75%;
   display: flex;
-  flex-flow: column;
+  flex-flow: column nowrap;
   align-items: center;
 `;
 

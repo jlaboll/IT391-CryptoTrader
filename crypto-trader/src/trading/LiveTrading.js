@@ -19,8 +19,11 @@ export class LiveTrading extends React.Component {
             pgLgth: 10,
             walletId: -1,
             money: 0,
+            userCoins: ["BTC","ETH","LTC","XMR","DOGE"],
             modalVisibile: false
         };
+
+        this.buildAPICall = this.buildAPICall.bind(this);
         this.buildReqURI = this.buildReqURI.bind(this);
         this.nextPage = this.nextPage.bind(this);
         this.prevPage = this.prevPage.bind(this);
@@ -28,22 +31,25 @@ export class LiveTrading extends React.Component {
         this.onCancel = this.onCancel.bind(this);
         this.search = this.search.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        setTimeout(this.render);
     }
 
     componentDidMount() {
-        axios.get('https://min-api.cryptocompare.com/data/all/coinlist')
+        axios.get('https://min-api.cryptocompare.com/data/all/coinlist?summary=true')
             .then(res => {
-                this.setState({allKeys: res.data.Data});
-                Object.keys(this.state.allKeys).map((key) => (
-                    this.state.idList.push(this.state.allKeys[key].Symbol)
-                ));
-                setTimeout(axios.get(this.buildReqURI())
-                    .then(res => {
-                        const cryptos = res.data;
-                        console.log(cryptos);
-                        this.setState({cryptos: cryptos});
-                    }))
-            })
+                const coinList = res.data.Data;
+                console.log(coinList);
+                this.setState({allKeys: coinList})
+            }).then(() => {
+                var apiCall = this.buildAPICall();
+        axios.get(apiCall)
+            .then(res => {
+                const cryptos = res.data;
+                console.log(cryptos);
+                this.setState({cryptos: cryptos});
+            })})
+
+        setTimeout(this.render);
     }
 
     componentDidUpdate(prevProps,prevState, snapshot){
@@ -63,6 +69,18 @@ export class LiveTrading extends React.Component {
         const userCoins = this.state.userCoins.filter(c => c !== walletKey);
         this.setState({userCoins: userCoins});
         this.forceUpdate();
+    }
+
+    buildAPICall = () => {
+        const firstChunk = 'https://min-api.cryptocompare.com/data/pricemulti?fsyms=';
+        var [first, ...rest] = this.state.userCoins;
+        let secondChunk = first;
+        console.log(rest);
+        rest.forEach(el => secondChunk = secondChunk.concat(",",el));
+        console.log(secondChunk);
+        let apiCall = firstChunk.concat("",secondChunk);
+        apiCall=apiCall.concat("","&tsyms=USD");
+        return apiCall;
     }
 
     buildReqURI() {
@@ -144,9 +162,16 @@ export class LiveTrading extends React.Component {
                     </Dropdown.Menu>
                 </Dropdown>
                 <div className="container">
-                    <div className="col-sm"><h1 className='text-success'> Money: ${this.state.money} </h1></div>
-                    <div className="col-sm"><button className="btn btn-outline-dark float-right mt-2" onClick={()=>this.setState({modalVisibile: true})}>Add New Wallet</button>
-                        <AddWalletModal show={this.state.modalVisibile} onHide={addModalClose} coinList={this.state.coinList}/>
+                    <div className="col-sm" style={{display: 'flex', justifyContent: 'center'}}><h1 className='text-success' > Money: ${this.state.money} </h1></div>
+                    <div className="col-sm" style={{padding: '10px'}}><button style={{
+                        hover: {boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)'},
+                        borderRadius: '8px',
+                        font: 'inherit',
+                        color: '#fff',
+                        backgroundColor: '#007bff',
+                        borderColor: '#007bff'
+                    }} onClick={()=>this.setState({modalVisibile: true})}>Add New Wallet</button>
+                        <AddWalletModal show={this.state.modalVisibile} onHide={addModalClose} coinList={this.state.allKeys}/>
                     </div>
                 </div>
                 <div className="container">
@@ -160,7 +185,10 @@ export class LiveTrading extends React.Component {
                             <button style={{
                                 hover: {boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)'},
                                 borderRadius: '8px',
-                                font: 'inherit'
+                                font: 'inherit',
+                                color: '#fff',
+                                backgroundColor: '#007bff',
+                                borderColor: '#007bff'
                             }} disabled>Buy
                             </button>
                         </div>
@@ -168,16 +196,22 @@ export class LiveTrading extends React.Component {
                             <button style={{
                                 hover: {boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)'},
                                 borderRadius: '8px',
-                                font: 'inherit'
+                                font: 'inherit',
+                                color: '#fff',
+                                backgroundColor: '#5B6470',
+                                borderColor: '#5B6470'
                             }} disabled>Sell
                             </button>
+                        </div>
+                        <div style={{padding: '10px'}}>
+                            <button className="btn btn-danger float-right ml-2" disabled>X</button>
                         </div>
                     </div>
                 </div>
                 <div>
                     {Object.keys(this.state.cryptos).map((key) => (
                         <Wallet key={key} coin={key} coinValue={this.state.cryptos[key].USD}
-                                coinName={this.state.allKeys[key].CoinName}/>
+                                coinName={this.state.allKeys[key].CoinName} onDelete={this.handleDelete}/>
                     ))}
                 </div>
                 <div>

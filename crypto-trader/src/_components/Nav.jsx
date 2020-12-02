@@ -22,7 +22,8 @@ function Nav() {
                         color: "#CCB114",
                         hover: { color: "#E7ECEF" }}}>Practice-Crypto</NavLink>
                     <NavLink to="/about" className="nav-item nav-link" style={{color: "#E7ECEF"}}>About</NavLink>
-                    <NavLink to="/live-trading" className="nav-item nav-link" style={{color: "#E7ECEF"}}>Live Trading</NavLink>
+                    <NavLink to="/live-trading" className="nav-item nav-link" style={{color: "#E7ECEF"}}>Trading</NavLink>
+                    <NavLink to="/coin-browser" className="nav-item nav-link" style={{color: "#E7ECEF"}}>Browse Coins</NavLink>
                     <NavLink to="/profile" className="nav-item nav-link" style={{color: "#E7ECEF"}}>Profile</NavLink>
                     <a onClick={accountService.logout} className="nav-item nav-link" style={{color: "#E7ECEF"}}>Logout</a>
                     {user.role === Role.Admin &&

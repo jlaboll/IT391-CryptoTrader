@@ -22,7 +22,7 @@ export default class AddWalletModal extends Component{
                 </Modal.Header>
                 <Modal.Body>
                     <h4>Search for a coin</h4>
-                    <Dropdown options={this.props.coinList} onChange={this._onSelect} value="Pick a coin"></Dropdown>
+                    <Dropdown options={this.props.coinList} onChange={this._onSelect} value="Pick a coin"/>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button className="btn btn-danger" onClick={this.props.onHide}>Cancel</Button>

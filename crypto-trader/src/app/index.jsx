@@ -10,6 +10,7 @@ import { Admin } from '@/admin';
 import { Account } from '@/account';
 import {About} from "../about/About";
 import {LiveTrading} from "../trading/LiveTrading";
+import {CoinFeed} from "@/coin_feed_search/CoinFeed";
 
 function App() {
     const { pathname } = useLocation();  
@@ -29,6 +30,7 @@ function App() {
                 <PrivateRoute exact path="/" component={Home} />
                 <PrivateRoute path="/about" component={About}/>
                 <PrivateRoute path="/live-trading" component={LiveTrading}/>
+                <PrivateRoute path="/coin-browser" component={CoinFeed}/>
                 <PrivateRoute path="/profile" component={Profile} />
                 <PrivateRoute path="/admin" roles={[Role.Admin]} component={Admin} />
                 <Route path="/account" component={Account} />

@@ -64,14 +64,23 @@ export default class Wallet extends Component {
                         <button style={{
                             hover: {boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)'},
                             borderRadius: '8px',
-                            font: 'inherit'
+                            font: 'inherit',
+                            color: '#fff',
+                            backgroundColor: '#007bff',
+                            borderColor: '#007bff'
                         }} onClick={this.handleBuy}>Buy</button></div>
                     <div style={{padding: '10px'}}>
                         <button style={{
                             hover: {boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)'},
                             borderRadius: '8px',
-                            font: 'inherit'
+                            font: 'inherit',
+                            color: '#fff',
+                            backgroundColor: '#5b6470',
+                            borderColor: '#5B6470'
                         }} onClick={this.handleSell}>Sell</button></div>
+                    <div style={{padding: '10px'}}>
+                        <button className="btn btn-danger float-right ml-2" onClick={() => this.props.onDelete(this.props.coin)}>X</button>
+                    </div>
                 </div>
             </div>
         );
